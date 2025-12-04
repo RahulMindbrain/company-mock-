@@ -33,4 +33,9 @@ export class CompanyRepository {
       where: { id:id },
     });
   }
+  async findByEmail(email: string) {
+  return prisma.company.findUnique({
+    where: { email },
+  });
+}
 }
