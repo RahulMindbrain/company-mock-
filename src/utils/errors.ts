@@ -1,0 +1,131 @@
+export const HTTP_STATUS = {
+  OK: 200,
+  CREATED: 201,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  CONFLICT: 409,
+  UNPROCESSABLE_ENTITY: 422,
+  INTERNAL_ERROR: 500,
+} as const;
+
+
+
+export const ERROR_CODES = {
+  // General
+  INTERNAL_ERROR: "INTERNAL_ERROR",
+  BAD_REQUEST: "BAD_REQUEST",
+  UNAUTHORIZED: "UNAUTHORIZED",
+  FORBIDDEN: "FORBIDDEN",
+  NOT_FOUND: "NOT_FOUND",
+  CONFLICT: "CONFLICT",
+  VALIDATION_ERROR: "VALIDATION_ERROR",
+
+  // Auth
+  AUTH_FAILED: "AUTH_FAILED",
+  TOKEN_EXPIRED: "TOKEN_EXPIRED",
+  INVALID_TOKEN: "INVALID_TOKEN",
+
+  // User
+  USER_NOT_FOUND: "USER_NOT_FOUND",
+  USER_ALREADY_EXISTS: "USER_ALREADY_EXISTS",
+  INVALID_USER_DATA: "INVALID_USER_DATA",
+
+  // Country
+  COUNTRY_NOT_FOUND: "COUNTRY_NOT_FOUND",
+  COUNTRY_ALREADY_EXISTS: "COUNTRY_ALREADY_EXISTS",
+  INVALID_COUNTRY_DATA: "INVALID_COUNTRY_DATA",
+
+  // State
+  STATE_NOT_FOUND: "STATE_NOT_FOUND",
+  STATE_ALREADY_EXISTS: "STATE_ALREADY_EXISTS",
+  INVALID_STATE_DATA: "INVALID_STATE_DATA",
+
+  // City
+  CITY_NOT_FOUND: "CITY_NOT_FOUND",
+  CITY_ALREADY_EXISTS: "CITY_ALREADY_EXISTS",
+  INVALID_CITY_DATA: "INVALID_CITY_DATA",
+
+  //company
+  COMPANY_NOT_FOUND: "COMPANY_NOT_FOUND",
+  COMPANY_ALREADY_EXISTS: "COMPANY_ALREADY_EXISTS",
+  INVALID_COMPANY_DATA: "INVALID_COMPANY_DATA",
+
+} as const;
+
+
+
+export const ERROR_MESSAGES = {
+  // General
+  INTERNAL_ERROR: "An unexpected error occurred.",
+  BAD_REQUEST: "Invalid request data.",
+  UNAUTHORIZED: "Authentication is required.",
+  FORBIDDEN: "You do not have permission.",
+  NOT_FOUND: "The requested resource was not found.",
+  CONFLICT: "Resource already exists.",
+  VALIDATION_ERROR: "One or more fields are invalid.",
+
+  // Auth
+  AUTH_FAILED: "Invalid login credentials.",
+  TOKEN_EXPIRED: "Token expired. Please login again.",
+  INVALID_TOKEN: "Provided token is invalid.",
+
+  // User
+  USER_NOT_FOUND: "User not found.",
+  USER_ALREADY_EXISTS: "User already exists.",
+  INVALID_USER_DATA: "Invalid user data.",
+
+  // Country
+  COUNTRY_NOT_FOUND: "Country not found.",
+  COUNTRY_ALREADY_EXISTS: "Country already exists.",
+  INVALID_COUNTRY_DATA: "Invalid country data.",
+
+  // State
+  STATE_NOT_FOUND: "State not found.",
+  STATE_ALREADY_EXISTS: "State already exists.",
+  INVALID_STATE_DATA: "Invalid state data.",
+
+  // City
+  CITY_NOT_FOUND: "City not found.",
+  CITY_ALREADY_EXISTS: "City already exists.",
+  INVALID_CITY_DATA: "Invalid city data.",
+
+  //company
+  COMPANY_NOT_FOUND: "Company not found.",
+  COMPANY_ALREADY_EXISTS: "Company already exists.",
+  INVALID_COMPANY_DATA: "Invalid company data or Incomplete data.",
+} as const;
+
+export const SUCCESS_CODES = {
+  SUCCESS: "SUCCESS",
+  CREATED: "CREATED",
+  UPDATED: "UPDATED",
+  DELETED: "DELETED",
+
+  // Company
+  COMPANY_CREATED: "COMPANY_CREATED",
+  COMPANY_FETCHED: "COMPANY_FETCHED",
+  COMPANY_UPDATED: "COMPANY_UPDATED",
+  COMPANY_DELETED: "COMPANY_DELETED",
+
+  // User, Country, State, City 
+  USER_CREATED: "USER_CREATED",
+  COUNTRY_CREATED: "COUNTRY_CREATED",
+  STATE_CREATED: "STATE_CREATED",
+  CITY_CREATED: "CITY_CREATED",
+} as const;
+
+
+export const SUCCESS_MESSAGES = {
+  SUCCESS: "Operation successful.",
+  CREATED: "Resource created successfully.",
+  UPDATED: "Resource updated successfully.",
+  DELETED: "Resource deleted successfully.",
+
+  // Company
+  COMPANY_CREATED: "Company created successfully.",
+  COMPANY_FETCHED: "Company fetched successfully.",
+  COMPANY_UPDATED: "Company updated successfully.",
+  COMPANY_DELETED: "Company deleted successfully.",
+} as const;
