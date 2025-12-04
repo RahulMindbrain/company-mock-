@@ -27,12 +27,11 @@ export class CompanyController {
       return res.status(response.status).json(response);
 
     } catch (error: any) {
-        const err = new AppError(
-        ERROR_CODES.INVALID_COMPANY_DATA,
-        error.message || ERROR_MESSAGES.INVALID_COMPANY_DATA,
-        HTTP_STATUS.BAD_REQUEST
-      );
-      return res.status(err.status).json(err);
+   return res.status(error.status || 400).json({
+    code: error.code || ERROR_CODES.INVALID_COMPANY_DATA,
+    message: error.message || ERROR_MESSAGES.INVALID_COMPANY_DATA,
+    status: error.status || 400,
+  });
     }
   }
 

@@ -1,7 +1,6 @@
 import { prisma } from "../../../db/prisma";
 import { Prisma} from "@prisma/client";
-import { CreateCompanyDto } from "../dtos/company.create.dto";
-import { UpdateCompanyDto } from "../dtos/company.update.dto";
+
 
 
 
@@ -39,3 +38,4 @@ export class CompanyRepository {
   });
 }
 }
+
