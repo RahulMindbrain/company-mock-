@@ -5,9 +5,9 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development ts-node-dev  --respawn --transpile-only src/server.ts",
-    "dev:debug": "cross-env NODE_ENV=development ts-node-dev  --respawn --transpile-only --inspect src/server.ts",
+    "dev:debug": "cross-env NODE_ENV=development ts-node-dev --inspect --respawn --transpile-only src/server.ts",
     "staging": "cross-env NODE_ENV=staging ts-node-dev --respawn  --transpile-only src/server.ts",
-    "staging:debug": "cross-env NODE_ENV=staging ts-node-dev  --respawn --transpile-only --inspect src/server.ts",
+    "staging:debug": "cross-env NODE_ENV=staging ts-node-dev --inspect  --respawn --transpile-only src/server.ts",
     "build": "tsc",
     "start": "cross-env NODE_ENV=production node dist/server.js",
     "start:debug": "cross-env NODE_ENV=production node --inspect dist/server.js"
