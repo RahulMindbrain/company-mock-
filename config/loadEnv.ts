@@ -10,10 +10,10 @@ export function loadEnv() {
   const envFile = path.resolve(process.cwd(), `env/.env.${env}`);
 
   if (fs.existsSync(envFile)) {
-    log.info(`➡ Loading environment: ${env}`);
+    console.info(`➡ Loading environment: ${env}`);
     dotenv.config({ path: envFile });
   } else {
-    log.warn(`⚠ .env file not found for NODE_ENV=${env}: ${envFile}`);
+    console.warn(`⚠ .env file not found for NODE_ENV=${env}: ${envFile}`);
   }
 
   const envSchema = z.object({

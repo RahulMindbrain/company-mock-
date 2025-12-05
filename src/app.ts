@@ -3,9 +3,13 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { loadEnv } from "../config/loadEnv.ts";
 
+//logger
 import { requestLogger } from "./utils/middleware/requestLogger.ts";
+
+//routes
 import { companyRoutes } from "./company/routes/company.routes.ts";
 import { planRoutes } from "./plans/routes/plan.routes.ts";
+import { adminRoutes } from "./admin/routes/admin.routes.ts";
 
 
 
@@ -30,7 +34,7 @@ app.use(cookieParser());
 app.use(requestLogger);
 
 
-
+//healthcheckroute
 app.get("/healthcheck", (_req, res) => {
   res.send("Server healthcheck-status: running");
 });
@@ -38,5 +42,7 @@ app.get("/healthcheck", (_req, res) => {
 // Routes
 app.use('/company',companyRoutes());
 app.use('/plan',planRoutes());
+app.use('/admin',adminRoutes());
+
 
 export default app;

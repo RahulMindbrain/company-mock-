@@ -40,7 +40,7 @@ export class CompanyService {
     const company = await this.repo.findById(id);
     if (!company) {
       throw new AppError(
-        ERROR_CODES.CITY_NOT_FOUND,
+        ERROR_CODES.COMPANY_NOT_FOUND,
         ERROR_MESSAGES.COMPANY_NOT_FOUND,
         HTTP_STATUS.NOT_FOUND
       );

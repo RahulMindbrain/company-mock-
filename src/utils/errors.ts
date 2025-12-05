@@ -47,7 +47,7 @@ export const ERROR_CODES = {
   CITY_ALREADY_EXISTS: "CITY_ALREADY_EXISTS",
   INVALID_CITY_DATA: "INVALID_CITY_DATA",
 
-  //company
+  //Company
   COMPANY_NOT_FOUND: "COMPANY_NOT_FOUND",
   COMPANY_ALREADY_EXISTS: "COMPANY_ALREADY_EXISTS",
   INVALID_COMPANY_DATA: "INVALID_COMPANY_DATA",
@@ -59,6 +59,17 @@ export const ERROR_CODES = {
   PLAN_UPDATE_FAILED: "PLAN_UPDATE_FAILED",
   PLAN_DELETE_FAILED: "PLAN_DELETE_FAILED",
   PLAN_ALREADY_EXISTS: "PLAN_ALREADY_EXISTS",
+  
+  //Admin
+  ADMIN_NOT_FOUND: 'ADMIN_NOT_FOUND',
+  EMAIL_ALREADY_EXISTS: 'EMAIL_ALREADY_EXISTS',
+  INVALID_ADMIN_ID: 'INVALID_ADMIN_ID',
+  INVALID_PAYLOAD: 'INVALID_PAYLOAD',
+  ADMINTYPE_INVALID: 'ADMINTYPE_INVALID',
+
+
+  //Data
+  DATA_INSUFFICIENT: 'DATA_INSUFFICIENT',
 
 } as const;
 
@@ -113,9 +124,21 @@ export const ERROR_MESSAGES = {
   PLAN_DELETE_FAILED: "Failed to delete the plan.",
   PLAN_ALREADY_EXISTS: "A plan with the same name already exists.",
 
+  //Admin
+  ADMIN_NOT_FOUND: 'The admin you are trying to access does not exist.',
+  EMAIL_ALREADY_EXISTS: 'An admin with this email already exists.',
+  INVALID_ADMIN_ID: 'The provided admin ID is invalid.',
+  INVALID_PAYLOAD: 'The data provided is incomplete or invalid.',
+  ADMINTYPE_INVALID: 'The provided admin type is not valid.',
+
+  //Data
+  DATA_INSUFFICIENT: 'Required fields are missing or incomplete.',
+
+
 } as const;
 
 export const SUCCESS_CODES = {
+  //General
   SUCCESS: "SUCCESS",
   CREATED: "CREATED",
   UPDATED: "UPDATED",
@@ -139,10 +162,19 @@ export const SUCCESS_CODES = {
   PLAN_DELETED: "PLAN_DELETED",
   PLAN_FETCHED: "PLAN_FETCHED",
   PLANS_FETCHED: "PLANS_FETCHED",
+
+  //Admin
+  ADMIN_CREATED: 'ADMIN_CREATED',
+  ADMIN_FETCHED: 'ADMIN_FETCHED',
+  ADMINS_FETCHED: 'ADMINS_FETCHED',
+  ADMIN_UPDATED: 'ADMIN_UPDATED',
+  ADMIN_DELETED: 'ADMIN_DELETED',
+  ADMIN_STATUS_UPDATED: 'ADMIN_STATUS_UPDATED',
 } as const;
 
 
 export const SUCCESS_MESSAGES = {
+  //General
   SUCCESS: "Operation successful.",
   CREATED: "Resource created successfully.",
   UPDATED: "Resource updated successfully.",
@@ -160,4 +192,12 @@ export const SUCCESS_MESSAGES = {
   PLAN_DELETED: "Plan deleted successfully.",
   PLAN_FETCHED: "Plan retrieved successfully.",
   PLANS_FETCHED: "Plans retrieved successfully.",
+
+  //Admin
+  ADMIN_CREATED: 'Admin has been successfully created.',
+  ADMIN_FETCHED: 'Admin details retrieved successfully.',
+  ADMINS_FETCHED: 'Admin list retrieved successfully.',
+  ADMIN_UPDATED: 'Admin details updated successfully.',
+  ADMIN_DELETED: 'Admin has been deleted successfully.',
+  ADMIN_STATUS_UPDATED: 'Admin status updated successfully.',
 } as const;

@@ -15,6 +15,114 @@
 						"method": "GET",
 						"header": [],
 						"url": {
+							"raw": "http://localhost:6070/plan/api/1/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"plan",
+								"api",
+								"1",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-plan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"companyId\": 1,\r\n  \"name\": \"Premium Plan\",\r\n  \"price\": 499.99,\r\n  \"BV\": 100,\r\n  \"description\": {\r\n    \"features\": [\"Fast payout\", \"Priority support\", \"High commission\"],\r\n    \"level\": \"premium\",\r\n    \"validity\": 365\r\n  },\r\n  \"isActive\": true,\r\n  \"tax\": \"18%\",\r\n  \"config\": \"{\\\"maxLimit\\\":5000,\\\"autoApprove\\\":false}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6070/plan/api/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"plan",
+								"api",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6070/plan/api/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"plan",
+								"api",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "plan-company",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n  \"country\": \"Bharat\",\r\n  \"state\": \"Odisha\"\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6070/api/1/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"api",
+								"1",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin-crud",
+			"item": [
+				{
+					"name": "get-admin-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
 							"raw": "http://localhost:6070/api/1/get",
 							"protocol": "http",
 							"host": [
@@ -31,7 +139,7 @@
 					"response": []
 				},
 				{
-					"name": "create-plan",
+					"name": "create-admin",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -80,7 +188,7 @@
 					"response": []
 				},
 				{
-					"name": "update-company",
+					"name": "update-admin",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -112,7 +220,7 @@
 			]
 		},
 		{
-			"name": "company-crud1",
+			"name": "company-crud",
 			"item": [
 				{
 					"name": "get-company-id",

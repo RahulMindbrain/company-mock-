@@ -5,8 +5,6 @@ import { DeletePlanDto } from "../dtos/plan.delete.dto";
 import { UpdatePlanDto } from "../dtos/plan.update.dto";
 import { PlanRepository } from "../repositories/plan.repository";
 
-
-
 export class PlanService {
   private readonly repo: PlanRepository;
 
@@ -15,48 +13,47 @@ export class PlanService {
   }
 
   async create(data: CreatePlanDto) {
-    //if the plan name is not there 
+    //if the plan name is not there
     if (!data.name) {
-  throw new AppError(
-    ERROR_CODES.INVALID_PLAN_DATA,
-    ERROR_MESSAGES.INVALID_PLAN_DATA,
-    HTTP_STATUS.BAD_REQUEST
-  );
-}
-  const existing = await this.repo.findByName(data.name);
-  if (existing){
-    throw new AppError(
-      ERROR_CODES.PLAN_ALREADY_EXISTS,
-      ERROR_MESSAGES.PLAN_ALREADY_EXISTS,
-      HTTP_STATUS.CONFLICT
-    )
-  }
-  //to find if there exist a company with the given id or not
+      throw new AppError(
+        ERROR_CODES.INVALID_PLAN_DATA,
+        ERROR_MESSAGES.INVALID_PLAN_DATA,
+        HTTP_STATUS.BAD_REQUEST
+      );
+    }
 
-  
-      if (!data.companyId) {
-  throw new AppError(
-    ERROR_CODES.INVALID_PLAN_DATA,
-    ERROR_MESSAGES.INVALID_PLAN_DATA,
-    HTTP_STATUS.BAD_REQUEST
-  );
-}
+    if (!data.companyId) {
+      throw new AppError(
+        ERROR_CODES.INVALID_PLAN_DATA,
+        ERROR_MESSAGES.INVALID_PLAN_DATA,
+        HTTP_STATUS.BAD_REQUEST
+      );
+    }
+    const company = await this.repo.findCompanyById(data.companyId);
 
-  const company = await this.repo.findCompanyById(data.companyId)
+    if (!company) {
+      throw new AppError(
+        ERROR_CODES.COMPANY_NOT_FOUND,
+        ERROR_MESSAGES.COMPANY_NOT_FOUND,
+        HTTP_STATUS.NOT_FOUND
+      );
+    }
+    const existing = await this.repo.findByNameForCompany(
+      data.name,
+      data.companyId
+    );
+    if (existing) {
+      throw new AppError(
+        ERROR_CODES.PLAN_ALREADY_EXISTS,
+        ERROR_MESSAGES.PLAN_ALREADY_EXISTS,
+        HTTP_STATUS.CONFLICT
+      );
+    }
+    //to find if there exist a company with the given id or not
 
-  if(!company){
-
-     throw new AppError(
-    ERROR_CODES.COMPANY_NOT_FOUND,
-    ERROR_MESSAGES.COMPANY_NOT_FOUND,
-    HTTP_STATUS.NOT_FOUND
-  );
-
-  }
-
-  const parsedData = {
-    ...data,
-     };
+    const parsedData = {
+      ...data,
+    };
 
     return this.repo.create(parsedData);
   }
@@ -87,8 +84,8 @@ export class PlanService {
         HTTP_STATUS.NOT_FOUND
       );
     }
-      const parsedData = {
-    ...data,
+    const parsedData = {
+      ...data,
     };
 
     return this.repo.update(id, parsedData);

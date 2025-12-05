@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
-import { PlanService } from "../services/plan.service";
-import { CreatePlanDto } from "../dtos/plan.create.dto";
-import { UpdatePlanDto } from "../dtos/plan.update.dto";
+
 import { AppSuccess } from "../../utils/appSuccess";
 import { AppError } from "../../utils/appError";
 import {
@@ -11,21 +9,24 @@ import {
   SUCCESS_CODES,
   SUCCESS_MESSAGES,
 } from "../../utils/errors";
-export class PlanController {
-  public service: PlanService;
+import { AdminService } from "../services/admin.service";
+import { CreateAdminDto } from "../dtos/admin.create.dto";
+import { UpdateAdminDto } from "../dtos/admin.update.dto";
+export class AdminController {
+  public service: AdminService;
 
   constructor() {
-    this.service = new PlanService();
+    this.service = new AdminService();
   }
 
   async create(req: Request, res: Response) {
     try {
-      const dto: CreatePlanDto = req.body;
+      const dto: CreateAdminDto = req.body;
 
       const result = await this.service.create(dto);
       const response = new AppSuccess(
-        SUCCESS_CODES.PLAN_CREATED,
-        SUCCESS_MESSAGES.PLAN_CREATED,
+        SUCCESS_CODES.ADMIN_CREATED,
+        SUCCESS_MESSAGES.ADMIN_CREATED,
         HTTP_STATUS.CREATED,
         result
       );
@@ -46,8 +47,8 @@ export class PlanController {
     try {
       const result = await this.service.getAll();
       const response = new AppSuccess(
-        SUCCESS_CODES.PLANS_FETCHED,
-        SUCCESS_MESSAGES.PLANS_FETCHED,
+        SUCCESS_CODES.ADMINS_FETCHED,
+        SUCCESS_MESSAGES.ADMINS_FETCHED,
         HTTP_STATUS.OK,
         result
       );
@@ -69,8 +70,8 @@ export class PlanController {
 
       const result = await this.service.getOne(id);
       const response = new AppSuccess(
-        SUCCESS_CODES.PLANS_FETCHED,
-        SUCCESS_MESSAGES.PLAN_FETCHED,
+        SUCCESS_CODES.ADMIN_FETCHED,
+        SUCCESS_MESSAGES.ADMIN_FETCHED,
         HTTP_STATUS.OK,
         result
       );
@@ -90,12 +91,12 @@ export class PlanController {
   async update(req: Request, res: Response) {
     try {
       const id = Number(req.params.id);
-      const dto: UpdatePlanDto = req.body;
+      const dto: UpdateAdminDto = req.body;
 
       const result = await this.service.update(id, dto);
       const response = new AppSuccess(
-        SUCCESS_CODES.PLAN_UPDATED,
-        SUCCESS_MESSAGES.PLAN_UPDATED,
+        SUCCESS_CODES.ADMIN_UPDATED,
+        SUCCESS_MESSAGES.ADMIN_UPDATED,
         HTTP_STATUS.OK,
         result
       );
@@ -118,8 +119,8 @@ export class PlanController {
 
       await this.service.delete(id);
       const response = new AppSuccess(
-        SUCCESS_CODES.PLAN_DELETED,
-        SUCCESS_MESSAGES.PLAN_DELETED,
+        SUCCESS_CODES.ADMIN_DELETED,
+        SUCCESS_MESSAGES.ADMIN_DELETED,
         HTTP_STATUS.OK,
         null
       );

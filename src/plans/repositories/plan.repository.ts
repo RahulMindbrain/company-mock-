@@ -37,6 +37,16 @@ export class PlanRepository {
     });
   }
 
+  async findByNameForCompany(name: string, companyId: number) {
+   
+  return prisma.plan.findFirst({
+    where: {
+      name,
+      companyId
+    }
+  });
+}
+
   async findCompanyById(id: number) {
   return prisma.company.findUnique({
     where: { id },

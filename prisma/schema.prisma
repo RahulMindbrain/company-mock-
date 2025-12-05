@@ -38,7 +38,8 @@ model Company {
   lightLogo       String?        
   darkLogo        String?     
 
-  plans           Plan[] 
+  plans           Plan[]
+  admins          Admin[] 
 
   createdBy  String?
   updatedBy  String?
@@ -66,4 +67,35 @@ model Plan{
 
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+}
+
+model Admin {
+  id                       Int         @id @default(autoincrement())
+  companyId                Int?
+  company                  Company?    @relation(fields: [companyId], references: [id])
+  
+  firstname                String?
+  lastname                 String?
+  email                    String?     @unique
+  mobno1                   String?
+  mobno2                   String?
+  profileimg               String?
+  admintype                String?
+
+  walletbalance            Float       @default(0)
+  totalwalletadd           Float       @default(0)
+  totalwithdraw            Float       @default(0)
+  totaltransferwallet      Float       @default(0)
+
+  status                   Boolean     @default(true)
+
+  createdBy                String?
+  updatedBy                String?
+
+  createdAt                DateTime    @default(now())
+  updatedAt                DateTime    @updatedAt
+
+  @@index([companyId])
+  @@index([status])
+  @@index([admintype])
 }
