@@ -3,10 +3,9 @@ import { ERROR_CODES, ERROR_MESSAGES, HTTP_STATUS } from "../../utils/errors";
 import { CreateAdminDto } from "../dtos/admin.create.dto";
 import { DeleteAdminDto } from "../dtos/admin.delete.dto";
 import { UpdateAdminDto } from "../dtos/admin.update.dto";
+import { hashPassword } from "../middlewares/passwordHash";
 import { AdminRepository } from "../repositories/admin.repository";
-
-
-
+import { omit } from "lodash";
 
 export class AdminService {
   private readonly repo: AdminRepository;
@@ -16,51 +15,51 @@ export class AdminService {
   }
 
   async create(data: CreateAdminDto) {
-     
     if (!data.firstname || !data.lastname) {
-  throw new AppError(
-    ERROR_CODES.DATA_INSUFFICIENT,
-    ERROR_MESSAGES.DATA_INSUFFICIENT,
-    HTTP_STATUS.UNPROCESSABLE_ENTITY
-  );
-}
-  const existing = await this.repo.findByEmail(data.email);
-  if (existing){
-    throw new AppError(
-      ERROR_CODES.EMAIL_ALREADY_EXISTS,
-      ERROR_MESSAGES.EMAIL_ALREADY_EXISTS,
-      HTTP_STATUS.CONFLICT
-    )
-  }
+      throw new AppError(
+        ERROR_CODES.DATA_INSUFFICIENT,
+        ERROR_MESSAGES.DATA_INSUFFICIENT,
+        HTTP_STATUS.UNPROCESSABLE_ENTITY
+      );
+    }
+    const existing = await this.repo.findByEmail(data.email);
+    if (existing) {
+      throw new AppError(
+        ERROR_CODES.EMAIL_ALREADY_EXISTS,
+        ERROR_MESSAGES.EMAIL_ALREADY_EXISTS,
+        HTTP_STATUS.CONFLICT
+      );
+    }
 
-  
-      if (!data.companyId) {
-  throw new AppError(
-    ERROR_CODES.DATA_INSUFFICIENT,
-    ERROR_MESSAGES.DATA_INSUFFICIENT,
-    HTTP_STATUS.UNPROCESSABLE_ENTITY
-  );
-}
+    if (!data.companyId) {
+      throw new AppError(
+        ERROR_CODES.DATA_INSUFFICIENT,
+        ERROR_MESSAGES.DATA_INSUFFICIENT,
+        HTTP_STATUS.UNPROCESSABLE_ENTITY
+      );
+    }
 
-  const company = await this.repo.findCompanyById(data.companyId)
+    const company = await this.repo.findCompanyById(data.companyId);
 
-  if(!company){
+    if (!company) {
+      throw new AppError(
+        ERROR_CODES.COMPANY_NOT_FOUND,
+        ERROR_MESSAGES.COMPANY_NOT_FOUND,
+        HTTP_STATUS.NOT_FOUND
+      );
+    }
 
-     throw new AppError(
-    ERROR_CODES.COMPANY_NOT_FOUND,
-    ERROR_MESSAGES.COMPANY_NOT_FOUND,
-    HTTP_STATUS.NOT_FOUND
-  );
+    const hashedPassword = await hashPassword(data.password);
 
-  }
-
-  const parsedData = {
-    ...data,
-     };
+    const cleanData = omit(data, ["passwordconfirmation", "companyId"]);
+    const parsedData = {
+      ...cleanData,
+      password: hashedPassword,
+      company: { connect: { id: data.companyId } },
+    };
 
     return this.repo.create(parsedData);
   }
-
 
   async getAll() {
     return this.repo.findAll();
@@ -88,8 +87,8 @@ export class AdminService {
         HTTP_STATUS.NOT_FOUND
       );
     }
-      const parsedData = {
-    ...data,
+    const parsedData = {
+      ...data,
     };
 
     return this.repo.update(id, parsedData);

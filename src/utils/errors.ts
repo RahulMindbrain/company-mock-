@@ -71,6 +71,16 @@ export const ERROR_CODES = {
   //Data
   DATA_INSUFFICIENT: 'DATA_INSUFFICIENT',
 
+  //Password
+  PASSWORD_REQUIRED: "PASSWORD_REQUIRED",
+  PASSWORD_TOO_WEAK: "PASSWORD_TOO_WEAK",
+  PASSWORD_MISMATCH: "PASSWORD_MISMATCH",
+  PASSWORD_INCORRECT: "PASSWORD_INCORRECT",
+  PASSWORD_SAME_AS_OLD: "PASSWORD_SAME_AS_OLD",
+  PASSWORD_RESET_EXPIRED: "PASSWORD_RESET_EXPIRED",
+  PASSWORD_RESET_INVALID: "PASSWORD_RESET_INVALID",
+
+
 } as const;
 
 
@@ -134,6 +144,16 @@ export const ERROR_MESSAGES = {
   //Data
   DATA_INSUFFICIENT: 'Required fields are missing or incomplete.',
 
+  //Password
+  PASSWORD_REQUIRED: "Password is required.",
+  PASSWORD_TOO_WEAK:
+    "Password must include uppercase, lowercase, number, and special character.",
+  PASSWORD_MISMATCH: "Passwords do not match.",
+  PASSWORD_INCORRECT: "The current password you entered is incorrect.",
+  PASSWORD_SAME_AS_OLD: "The new password cannot be the same as the old password.",
+  PASSWORD_RESET_EXPIRED: "This password reset link has expired.",
+  PASSWORD_RESET_INVALID: "Invalid or malformed password reset token.",
+
 
 } as const;
 
@@ -170,6 +190,12 @@ export const SUCCESS_CODES = {
   ADMIN_UPDATED: 'ADMIN_UPDATED',
   ADMIN_DELETED: 'ADMIN_DELETED',
   ADMIN_STATUS_UPDATED: 'ADMIN_STATUS_UPDATED',
+
+  //Password
+  PASSWORD_UPDATED: "PASSWORD_UPDATED",
+  PASSWORD_RESET_SENT: "PASSWORD_RESET_SENT",
+  PASSWORD_RESET_SUCCESS: "PASSWORD_RESET_SUCCESS",
+
 } as const;
 
 
@@ -200,4 +226,10 @@ export const SUCCESS_MESSAGES = {
   ADMIN_UPDATED: 'Admin details updated successfully.',
   ADMIN_DELETED: 'Admin has been deleted successfully.',
   ADMIN_STATUS_UPDATED: 'Admin status updated successfully.',
+
+  //Password
+  PASSWORD_UPDATED: "Password updated successfully.",
+  PASSWORD_RESET_SENT: "Password reset link sent to your email.",
+  PASSWORD_RESET_SUCCESS: "Your password has been reset successfully.",
+
 } as const;

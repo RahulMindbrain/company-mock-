@@ -22,7 +22,7 @@ export function loadEnv() {
     DB_URL: z.string().url(),
     DB_NAME:z.string(),
     DB_PASS:z.string(),
-    SALT_WORK_FACTOR: z.string().regex(/^\d+$/),
+    SALT_WORK_FACTOR: z.string().regex(/^\d+$/).transform(Number),
     ACCESS_TOKEN_TTL: z.string(),
     REFRESH_TOKEN_TTL: z.string(),
     JWT_SECRET: z.string().min(32).optional(),

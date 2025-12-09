@@ -77,8 +77,18 @@ model Admin {
   firstname                String?
   lastname                 String?
   email                    String?     @unique
+
+  countrycode              String?
   mobno1                   String?
   mobno2                   String?
+
+  pinno                    String?
+  countryname              String?
+  statename                String?
+  address                  String?
+
+  password                 String?
+
   profileimg               String?
   admintype                String?
 
@@ -95,7 +105,21 @@ model Admin {
   createdAt                DateTime    @default(now())
   updatedAt                DateTime    @updatedAt
 
+  sessions                 AdminSession[]
+
   @@index([companyId])
   @@index([status])
   @@index([admintype])
 }
+
+model AdminSession {
+  id         Int       @id @default(autoincrement())
+  adminId    Int
+  admin      Admin     @relation(fields: [adminId], references: [id])
+  userAgent  String?
+  ipAddress  String?
+  valid      Boolean   @default(true)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+

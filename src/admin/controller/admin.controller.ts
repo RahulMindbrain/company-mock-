@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-
+import "reflect-metadata";
 import { AppSuccess } from "../../utils/appSuccess";
 import { AppError } from "../../utils/appError";
 import {
@@ -12,6 +12,10 @@ import {
 import { AdminService } from "../services/admin.service";
 import { CreateAdminDto } from "../dtos/admin.create.dto";
 import { UpdateAdminDto } from "../dtos/admin.update.dto";
+import log from "../../utils/logger";
+import { plainToInstance } from "class-transformer";
+import { validateOrReject } from "class-validator";
+
 export class AdminController {
   public service: AdminService;
 
@@ -21,6 +25,7 @@ export class AdminController {
 
   async create(req: Request, res: Response) {
     try {
+      log.info("hello world");
       const dto: CreateAdminDto = req.body;
 
       const result = await this.service.create(dto);
@@ -91,7 +96,11 @@ export class AdminController {
   async update(req: Request, res: Response) {
     try {
       const id = Number(req.params.id);
-      const dto: UpdateAdminDto = req.body;
+      const dto = plainToInstance(UpdateAdminDto, req.body);
+      await validateOrReject(dto, {
+        whitelist: true, // remove fields not in DTO
+        forbidNonWhitelisted: true, // throw error on unknown fields
+      });
 
       const result = await this.service.update(id, dto);
       const response = new AppSuccess(
