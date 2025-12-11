@@ -10,6 +10,8 @@ import { CreateSessionDto, UpdateAdminSessionDto } from "../dtos/admin.session.d
 import { validatePassword } from "../middlewares/passwordHash";
 import { AdminRepository } from "../repositories/admin.repository";
 import { AdminSessionRepository } from "../repositories/admin.session.repository";
+import { parseTTL } from "../../utils/parseTTL";
+import { parse } from "path";
 
 
 export class AdminSessionService {
@@ -52,19 +54,19 @@ export class AdminSessionService {
     ); 
    }
 
-  //create accessToken and refreshToken
+
 
     const accessToken = signJwt(
     { ...exist, session: session.id },
     "ACCESS_TOKEN_PRIVATE_KEY",
-    { expiresIn: config.ACCESS_TOKEN_TTL} 
+    { expiresIn:parseTTL(config.ACCESS_TOKEN_TTL)} 
   );
 
-  // create a refresh token
+ 
   const refreshToken = signJwt(
     { ...exist, session: session.id },
     "REFRESH_TOKEN_PRIVATE_KEY",
-    { expiresIn: config.REFRESH_TOKEN_TTL } 
+    { expiresIn: parseTTL(config.REFRESH_TOKEN_TTL) } 
   );
 
   

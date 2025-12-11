@@ -7,6 +7,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum CategoryStatus {
+  INACTIVE @map("0")
+  ACTIVE   @map("1")
+}
+
 model Company {
   id              Int       @id @default(autoincrement())
   
@@ -70,13 +75,13 @@ model Plan{
 }
 
 model Admin {
-  id                       Int         @id @default(autoincrement())
+  id                       Int             @id @default(autoincrement())
   companyId                Int?
-  company                  Company?    @relation(fields: [companyId], references: [id])
+  company                  Company?        @relation(fields: [companyId], references: [id])
   
   firstname                String?
   lastname                 String?
-  email                    String?     @unique
+  email                    String?         @unique
 
   countrycode              String?
   mobno1                   String?
@@ -92,20 +97,22 @@ model Admin {
   profileimg               String?
   admintype                String?
 
-  walletbalance            Float       @default(0)
-  totalwalletadd           Float       @default(0)
-  totalwithdraw            Float       @default(0)
-  totaltransferwallet      Float       @default(0)
+  walletbalance            Float             @default(0)
+  totalwalletadd           Float             @default(0)
+  totalwithdraw            Float             @default(0)
+  totaltransferwallet      Float             @default(0)
 
-  status                   Boolean     @default(true)
+  status                   Boolean           @default(true)
 
   createdBy                String?
   updatedBy                String?
 
-  createdAt                DateTime    @default(now())
-  updatedAt                DateTime    @updatedAt
+  createdAt                DateTime          @default(now())
+  updatedAt                DateTime          @updatedAt
 
   sessions                 AdminSession[]
+  categoriesCreated        Category[]        @relation("CreatedCategories")
+  categoriesUpdated        Category[]        @relation("UpdatedCategories")
 
   @@index([companyId])
   @@index([status])
@@ -123,3 +130,20 @@ model AdminSession {
   updatedAt  DateTime  @updatedAt
 }
 
+
+model Category {
+  id            Int              @id @default(autoincrement())
+  categoryname  String?
+  description   Json?
+
+  status        CategoryStatus   @default(ACTIVE)
+
+  createdBy     Int?
+  createdByUser Admin?           @relation("CreatedCategories", fields: [createdBy], references: [id])
+
+  updatedBy     Int?
+  updatedByUser Admin?           @relation("UpdatedCategories", fields: [updatedBy], references: [id])
+
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+}

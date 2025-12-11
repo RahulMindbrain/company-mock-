@@ -159,7 +159,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiY29tcGFueUlkIjoxLCJmaXJzdG5hbWUiOiJKb2huIiwibGFzdG5hbWUiOiJEb2UiLCJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiY291bnRyeWNvZGUiOm51bGwsIm1vYm5vMSI6Iis5MTk4NzY1NDMyMTAiLCJtb2JubzIiOiIrOTE4NzY1NDMyMTA5IiwicGlubm8iOm51bGwsImNvdW50cnluYW1lIjpudWxsLCJzdGF0ZW5hbWUiOm51bGwsImFkZHJlc3MiOm51bGwsInBhc3N3b3JkIjoiJDJiJDEwJDJwRENVY3lpNm8uVS4ubHZqNjMwVXU0ZGthaGEucTljR3JsYkRiemFiWVhYR1N3MnlwdU5XIiwicHJvZmlsZWltZyI6Imh0dHBzOi8vZXhhbXBsZS5jb20vcHJvZmlsZS9qb2huLnBuZyIsImFkbWludHlwZSI6bnVsbCwid2FsbGV0YmFsYW5jZSI6MCwidG90YWx3YWxsZXRhZGQiOjAsInRvdGFsd2l0aGRyYXciOjAsInRvdGFsdHJhbnNmZXJ3YWxsZXQiOjAsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZEJ5IjpudWxsLCJ1cGRhdGVkQnkiOm51bGwsImNyZWF0ZWRBdCI6IjIwMjUtMTItMDlUMDY6MDk6NTcuNjUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMTItMDlUMDY6MDk6NTcuNjUyWiIsInNlc3Npb24iOjE2LCJpYXQiOjE3NjUyNzc0MzQsImV4cCI6MTc2NTI3ODMzNH0.EakQADZzRS4h3u5FLE2IvlcPIV5RBez7fXGQV96UY_pf1lkxIL6X98DnLAFUR6R4J4htZTvHoYEPnQSVri3Jvo8jNOfb_Opnyp0eEA5hmNC-MlZlmALotEnSkq5YWY6-k3LOEpQqnz2pG4l84f_37Kp8vXzsBknFFbh2SDhhbrtzonUoh1c42rf0VBPDzHgECXmLOw9R9c_ycKAdorzQORaCeIslIj3Tpn7fISqAScwy_nKnhSLSjjR-OvhKZlFtvtErN8uy_NhABsbpfzf2TKuoj1FOkhKEvSfMb3Du3VZmCLIumlYNASYIF848nnJLHXGv4nOHHbabo7sDTwD1cA",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiY29tcGFueUlkIjoxLCJmaXJzdG5hbWUiOiJKb2huIiwibGFzdG5hbWUiOiJEb2UiLCJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiY291bnRyeWNvZGUiOm51bGwsIm1vYm5vMSI6Iis5MTk4NzY1NDMyMTAiLCJtb2JubzIiOiIrOTE4NzY1NDMyMTA5IiwicGlubm8iOm51bGwsImNvdW50cnluYW1lIjpudWxsLCJzdGF0ZW5hbWUiOm51bGwsImFkZHJlc3MiOm51bGwsInBhc3N3b3JkIjoiJDJiJDEwJDJwRENVY3lpNm8uVS4ubHZqNjMwVXU0ZGthaGEucTljR3JsYkRiemFiWVhYR1N3MnlwdU5XIiwicHJvZmlsZWltZyI6Imh0dHBzOi8vZXhhbXBsZS5jb20vcHJvZmlsZS9qb2huLnBuZyIsImFkbWludHlwZSI6bnVsbCwid2FsbGV0YmFsYW5jZSI6MCwidG90YWx3YWxsZXRhZGQiOjAsInRvdGFsd2l0aGRyYXciOjAsInRvdGFsdHJhbnNmZXJ3YWxsZXQiOjAsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZEJ5IjpudWxsLCJ1cGRhdGVkQnkiOm51bGwsImNyZWF0ZWRBdCI6IjIwMjUtMTItMDlUMDY6MDk6NTcuNjUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMTItMDlUMDY6MDk6NTcuNjUyWiIsInNlc3Npb24iOjE4LCJpYXQiOjE3NjU0MzYwNTMsImV4cCI6MTc2NTQzNjk1M30.YcYSooRBy9D4lBngA34dWns4mam_ZGyNiwnsoDbNXuGRwKr6AAsV8m4GKCGVb_R3lVIxRDNeKi74sfdvEwKxQcFWmTEhWecOg-jKWVbfEqVyGXCZUSEeOsLMSgTFCj6GGnfzx-J9uvdgMJGhZ4hJYVeygrHHVE0TGFbhfo1o1spxVO8WilQnJAQ2D8x9sbUETD2Lje4XpFvubnbiin3gnAT5U9CwctkyHIvxF8cM3Eu5YDwrP_Wm0XNq8znLEct1BspQhIsMtFMUWHCgymYmHss0CBIc2Z96egPJ0w99Smhxm9cDwrauTECd3XI_s5dTVKNWIENYOCxIPs5F-HGRPw",
 											"type": "string"
 										}
 									]
@@ -183,7 +183,7 @@
 							"response": []
 						},
 						{
-							"name": "New Request",
+							"name": "delete",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -429,6 +429,136 @@
 								"api",
 								"1",
 								"edit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "category-crud",
+			"item": [
+				{
+					"name": "create-category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"categoryname\": \"xxxxxyzzhhzzz\",\r\n  \"description\": \"All electronic gadgets and devices\",\r\n  \"status\": \"ACTIVE\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6070/category/api/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"category",
+								"api",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getting all category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6070/category/api/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"category",
+								"api",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get category by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiY29tcGFueUlkIjoxLCJmaXJzdG5hbWUiOiJKb2huIiwibGFzdG5hbWUiOiJEb2UiLCJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiY291bnRyeWNvZGUiOm51bGwsIm1vYm5vMSI6Iis5MTk4NzY1NDMyMTAiLCJtb2JubzIiOiIrOTE4NzY1NDMyMTA5IiwicGlubm8iOm51bGwsImNvdW50cnluYW1lIjpudWxsLCJzdGF0ZW5hbWUiOm51bGwsImFkZHJlc3MiOm51bGwsInBhc3N3b3JkIjoiJDJiJDEwJDJwRENVY3lpNm8uVS4ubHZqNjMwVXU0ZGthaGEucTljR3JsYkRiemFiWVhYR1N3MnlwdU5XIiwicHJvZmlsZWltZyI6Imh0dHBzOi8vZXhhbXBsZS5jb20vcHJvZmlsZS9qb2huLnBuZyIsImFkbWludHlwZSI6bnVsbCwid2FsbGV0YmFsYW5jZSI6MCwidG90YWx3YWxsZXRhZGQiOjAsInRvdGFsd2l0aGRyYXciOjAsInRvdGFsdHJhbnNmZXJ3YWxsZXQiOjAsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZEJ5IjpudWxsLCJ1cGRhdGVkQnkiOm51bGwsImNyZWF0ZWRBdCI6IjIwMjUtMTItMDlUMDY6MDk6NTcuNjUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMTItMDlUMDY6MDk6NTcuNjUyWiIsInNlc3Npb24iOjIwLCJpYXQiOjE3NjU0Mzc1NTIsImV4cCI6MTc2NTQzODQ1Mn0.f4xB0LdAvomdz54DTc1qKirBrGekwhmhmKHBTlcVDsOXZrlxM6plwmt1Omyj03tQe2MtQaX4wOiuBHcAUfLtL0ioOTVf92TVHVegDdec7IxdmXqSGG9gQ6DCjeOTwK81UkI4KMUzCNJ22BhZqDHCIZKniikXJgg-iFiOfrGnh6AGE6bCevMRthGebpOS0teG3tSLTvuXg0HUIyzoqY6jNG1gUG4YRAScEr90kQqAaUX5TPlRGZSWDRRd9yeM-IiPRfO6ARjNEKY3OxDa0budeswm4Krb5C-S1bka3abzMlBL1mlJB_1ml9pKkoRcQyAjGcl9TORGqN1H7HVQP3dPXA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6070/category/api/13/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"category",
+								"api",
+								"13",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6070/category/api/12/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"category",
+								"api",
+								"12",
+								"delete"
 							]
 						}
 					},

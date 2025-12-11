@@ -11,10 +11,14 @@ import { requestLogger } from "./utils/middleware/requestLogger.ts";
 import { companyRoutes } from "./company/routes/company.routes.ts";
 import { planRoutes } from "./plans/routes/plan.routes.ts";
 import { adminRoutes } from "./admin/routes/admin.routes.ts";
+import { categoryRoutes } from "./category/routes/category.routes.ts";
+
 
 //middlewares
 import deserializeAdmin from "./admin/middlewares/deserializeadmin.middlewares.ts";
 import { errorHandler } from "./utils/middleware/errorHandler.ts";
+
+
 
 
 
@@ -35,8 +39,8 @@ const app: Application = express();
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(deserializeAdmin);
 app.use(cookieParser());
+app.use(deserializeAdmin);
 app.use(requestLogger);
 app.set("trust proxy", true);
 
@@ -50,6 +54,7 @@ app.get("/healthcheck", (_req:Request, res) => {
 app.use('/company',companyRoutes());
 app.use('/plan',planRoutes());
 app.use('/admin',adminRoutes());
+app.use('/category',categoryRoutes());
 
 
 app.use(errorHandler)

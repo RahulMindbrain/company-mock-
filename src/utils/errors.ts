@@ -80,6 +80,14 @@ export const ERROR_CODES = {
   PASSWORD_RESET_EXPIRED: "PASSWORD_RESET_EXPIRED",
   PASSWORD_RESET_INVALID: "PASSWORD_RESET_INVALID",
 
+  //Category
+  CATEGORY_NOT_FOUND: "CATEGORY_NOT_FOUND",
+  CATEGORY_ALREADY_EXISTS: "CATEGORY_ALREADY_EXISTS",
+  CATEGORY_VALIDATION_ERROR: "CATEGORY_VALIDATION_ERROR",
+  CATEGORY_CREATION_FAILED: "CATEGORY_CREATION_FAILED",
+  CATEGORY_UPDATE_FAILED: "CATEGORY_UPDATE_FAILED",
+  CATEGORY_DELETE_FAILED: "CATEGORY_DELETE_FAILED",
+
 
 } as const;
 
@@ -154,6 +162,15 @@ export const ERROR_MESSAGES = {
   PASSWORD_RESET_EXPIRED: "This password reset link has expired.",
   PASSWORD_RESET_INVALID: "Invalid or malformed password reset token.",
 
+  //Category
+  CATEGORY_NOT_FOUND: "The specified category was not found.",
+  CATEGORY_ALREADY_EXISTS: "A category with this name already exists.",
+  CATEGORY_VALIDATION_ERROR: "Category validation failed. Please check the input data.",
+  CATEGORY_CREATION_FAILED: "Failed to create category due to a server error.",
+  CATEGORY_UPDATE_FAILED: "Failed to update category due to a server error.",
+  CATEGORY_DELETE_FAILED: "Failed to delete category due to a server error.",
+
+
 
 } as const;
 
@@ -196,6 +213,13 @@ export const SUCCESS_CODES = {
   PASSWORD_RESET_SENT: "PASSWORD_RESET_SENT",
   PASSWORD_RESET_SUCCESS: "PASSWORD_RESET_SUCCESS",
 
+  //Category
+  CATEGORY_CREATED: "CATEGORY_CREATED",
+  CATEGORY_FETCHED: "CATEGORY_FETCHED",
+  CATEGORY_UPDATED: "CATEGORY_UPDATED",
+  CATEGORY_DELETED: "CATEGORY_DELETED",
+  CATEGORY_LIST_FETCHED: "CATEGORY_LIST_FETCHED",
+
 } as const;
 
 
@@ -231,5 +255,12 @@ export const SUCCESS_MESSAGES = {
   PASSWORD_UPDATED: "Password updated successfully.",
   PASSWORD_RESET_SENT: "Password reset link sent to your email.",
   PASSWORD_RESET_SUCCESS: "Your password has been reset successfully.",
+
+  //Category
+  CATEGORY_CREATED: "Category created successfully.",
+  CATEGORY_FETCHED: "Category retrieved successfully.",
+  CATEGORY_UPDATED: "Category updated successfully.",
+  CATEGORY_DELETED: "Category deleted successfully.",
+  CATEGORY_LIST_FETCHED: "Categories retrieved successfully."
 
 } as const;
