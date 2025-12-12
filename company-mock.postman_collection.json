@@ -567,6 +567,137 @@
 			]
 		},
 		{
+			"name": "brand",
+			"item": [
+				{
+					"name": "get brand",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6070/brand/api/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"brand",
+								"api",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiY29tcGFueUlkIjoxLCJmaXJzdG5hbWUiOiJKb2huIiwibGFzdG5hbWUiOiJEb2UiLCJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiY291bnRyeWNvZGUiOm51bGwsIm1vYm5vMSI6Iis5MTk4NzY1NDMyMTAiLCJtb2JubzIiOiIrOTE4NzY1NDMyMTA5IiwicGlubm8iOm51bGwsImNvdW50cnluYW1lIjpudWxsLCJzdGF0ZW5hbWUiOm51bGwsImFkZHJlc3MiOm51bGwsInBhc3N3b3JkIjoiJDJiJDEwJDJwRENVY3lpNm8uVS4ubHZqNjMwVXU0ZGthaGEucTljR3JsYkRiemFiWVhYR1N3MnlwdU5XIiwicHJvZmlsZWltZyI6Imh0dHBzOi8vZXhhbXBsZS5jb20vcHJvZmlsZS9qb2huLnBuZyIsImFkbWludHlwZSI6bnVsbCwid2FsbGV0YmFsYW5jZSI6MCwidG90YWx3YWxsZXRhZGQiOjAsInRvdGFsd2l0aGRyYXciOjAsInRvdGFsdHJhbnNmZXJ3YWxsZXQiOjAsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZEJ5IjpudWxsLCJ1cGRhdGVkQnkiOm51bGwsImNyZWF0ZWRBdCI6IjIwMjUtMTItMDlUMDY6MDk6NTcuNjUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMTItMDlUMDY6MDk6NTcuNjUyWiIsInNlc3Npb24iOjIxLCJpYXQiOjE3NjU1MzU4NDgsImV4cCI6MTc2NjQzNTg0OH0.chosoVJcOK8DkrU4PTsfT72uLCxTafQGt33O9W24xeND4qrzKVW56mrLlYYQsoMxmaZJyEFvfDoeSy4eU502SJ9rsk7eHZF_HsGExjt5A4HEOMyYQ7fb0lYHc6M291SOcxgfO0lL2eD8MKJ3rTPrVLX74OZWNHhMlcsesvPhlYVMIdXP050XUCXomlFBpZY_hOlCMgU66XmFZDnU0wGBdqAbLGeeY3x9kqper9g67v7ykDNnqit1HvDTOl9bp0Xj61mCSp1h_Q4ci5_aYGsGMbWM3J9iIDaIQUkM6jD7tfYxQuEjhgjgFeKJXt9nejhUCQBIrDivVnud2sqdWtfiXw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"brandname\": \"Nike\",\r\n  \"status\": \"ACTIVE\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6070/brand/api/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"brand",
+								"api",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6070/brand/api/1/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"brand",
+								"api",
+								"1",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"INACTIVE\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6070/brand/api/1/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"brand",
+								"api",
+								"1",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "healthcheck",
 			"request": {
 				"method": "GET",
