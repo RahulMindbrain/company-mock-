@@ -1,0 +1,14 @@
+-- AlterTable
+ALTER TABLE "Product" ADD COLUMN     "BV" DOUBLE PRECISION,
+ADD COLUMN     "description" TEXT,
+ADD COLUMN     "dp" DOUBLE PRECISION,
+ADD COLUMN     "hsncode" TEXT,
+ADD COLUMN     "mainImg" TEXT,
+ADD COLUMN     "mrp" DOUBLE PRECISION,
+ADD COLUMN     "otherImgs" TEXT[],
+ADD COLUMN     "sku" TEXT,
+ADD COLUMN     "sre" TEXT,
+ADD COLUMN     "stock" INTEGER,
+ADD COLUMN     "taxPercent" DOUBLE PRECISION,
+ALTER COLUMN "categoryId" DROP NOT NULL,
+ALTER COLUMN "brandId" DROP NOT NULL;

@@ -88,6 +88,19 @@ export const ERROR_CODES = {
   CATEGORY_UPDATE_FAILED: "CATEGORY_UPDATE_FAILED",
   CATEGORY_DELETE_FAILED: "CATEGORY_DELETE_FAILED",
 
+  //Brand
+  BRAND_NOT_FOUND: "BRAND_NOT_FOUND",
+  BRAND_ALREADY_EXISTS: "BRAND_ALREADY_EXISTS",
+  BRAND_CREATION_FAILED: "BRAND_CREATION_FAILED",
+  BRAND_UPDATE_FAILED: "BRAND_UPDATE_FAILED",
+  BRAND_DELETE_FAILED: "BRAND_DELETE_FAILED",
+
+  // Product
+  PRODUCT_NOT_FOUND: "PRODUCT_NOT_FOUND",
+  PRODUCT_ALREADY_EXISTS: "PRODUCT_ALREADY_EXISTS",
+  PRODUCT_CREATION_FAILED: "PRODUCT_CREATION_FAILED",
+  PRODUCT_UPDATE_FAILED: "PRODUCT_UPDATE_FAILED",
+  PRODUCT_DELETE_FAILED: "PRODUCT_DELETE_FAILED",
 
 } as const;
 
@@ -170,6 +183,21 @@ export const ERROR_MESSAGES = {
   CATEGORY_UPDATE_FAILED: "Failed to update category due to a server error.",
   CATEGORY_DELETE_FAILED: "Failed to delete category due to a server error.",
 
+ 
+  //Brand
+  BRAND_NOT_FOUND: "Brand not found.",
+  BRAND_ALREADY_EXISTS: "Brand already exists.",
+  BRAND_CREATION_FAILED: "Failed to create brand.",
+  BRAND_UPDATE_FAILED: "Failed to update brand.",
+  BRAND_DELETE_FAILED: "Failed to delete brand.",
+
+  //Product
+
+  PRODUCT_NOT_FOUND: "Product not found.",
+  PRODUCT_ALREADY_EXISTS: "Product already exists.",
+  PRODUCT_CREATION_FAILED: "Failed to create product.",
+  PRODUCT_UPDATE_FAILED: "Failed to update product.",
+  PRODUCT_DELETE_FAILED: "Failed to delete product.",
 
 
 } as const;
@@ -220,6 +248,18 @@ export const SUCCESS_CODES = {
   CATEGORY_DELETED: "CATEGORY_DELETED",
   CATEGORY_LIST_FETCHED: "CATEGORY_LIST_FETCHED",
 
+  //Brand
+  BRAND_CREATED: "BRAND_CREATED",
+  BRAND_FETCHED: "BRAND_FETCHED",
+  BRAND_UPDATED: "BRAND_UPDATED",
+  BRAND_DELETED: "BRAND_DELETED",
+
+  // Product
+  PRODUCT_CREATED: "PRODUCT_CREATED",
+  PRODUCT_FETCHED: "PRODUCT_FETCHED",
+  PRODUCT_UPDATED: "PRODUCT_UPDATED",
+  PRODUCT_DELETED: "PRODUCT_DELETED",
+
 } as const;
 
 
@@ -261,6 +301,18 @@ export const SUCCESS_MESSAGES = {
   CATEGORY_FETCHED: "Category retrieved successfully.",
   CATEGORY_UPDATED: "Category updated successfully.",
   CATEGORY_DELETED: "Category deleted successfully.",
-  CATEGORY_LIST_FETCHED: "Categories retrieved successfully."
+  CATEGORY_LIST_FETCHED: "Categories retrieved successfully.",
+
+  //Brand
+  BRAND_CREATED: "Brand created successfully.",
+  BRAND_FETCHED: "Brand fetched successfully.",
+  BRAND_UPDATED: "Brand updated successfully.",
+  BRAND_DELETED: "Brand deleted successfully.",
+
+  // Product
+  PRODUCT_CREATED: "Product created successfully.",
+  PRODUCT_FETCHED: "Product fetched successfully.",
+  PRODUCT_UPDATED: "Product updated successfully.",
+  PRODUCT_DELETED: "Product deleted successfully.",
 
 } as const;

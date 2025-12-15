@@ -698,6 +698,116 @@
 			]
 		},
 		{
+			"name": "product",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productname\": \"Wireless Mouse Pro\",\r\n  \"categoryId\": 13,\r\n  \"brandId\": 1,\r\n  \"sku\": \"WM-PRO-001\",\r\n  \"hsncode\": \"847160\",\r\n  \"dp\": 750.5,\r\n  \"mrp\": 999.99,\r\n  \"taxPercent\": 18,\r\n  \"stock\": 120,\r\n  \"description\": \"Ergonomic wireless mouse with adjustable DPI and long battery life\",\r\n  \"sre\": \"Some internal reference\",\r\n  \"BV\": 12.5,\r\n  \"mainImg\": \"https://cdn.example.com/products/mouse-main.jpg\",\r\n  \"otherImgs\": [\r\n    \"https://cdn.example.com/products/mouse-1.jpg\",\r\n    \"https://cdn.example.com/products/mouse-2.jpg\"\r\n  ],\r\n  \"status\": \"ACTIVE\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6070/product/api/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"product",
+								"api",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6070/product/api/1/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"product",
+								"api",
+								"1",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n       \r\n        \"productname\": \"Wireless Mouse Pro X\"\r\n     \r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6070/product/api/1/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"product",
+								"api",
+								"1",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6070/product/api/1/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6070",
+							"path": [
+								"product",
+								"api",
+								"1",
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "healthcheck",
 			"request": {
 				"method": "GET",

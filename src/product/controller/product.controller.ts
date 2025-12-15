@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
-import { BrandService } from "../services/brand.service";
-import { CreateBrandDto } from "../dtos/brand.create.dto";
-import { UpdateBrandDto } from "../dtos/brand.update.dto";
+import { ProductService } from "../services/product.service";
 import { AppSuccess } from "../../utils/appSuccess";
 import { AppError } from "../../utils/appError";
 import {
@@ -12,23 +10,27 @@ import {
   SUCCESS_MESSAGES,
 } from "../../utils/errors";
 import log from "../../utils/logger";
-export class BrandController {
-  public service: BrandService;
+import { CreateProductDto } from "../dtos/product.create.dto";
+import { UpdateProductDto } from "../dtos/product.update.dto";
+
+
+export class ProductController {
+  public service: ProductService;
 
   constructor() {
-    this.service = new BrandService();
+    this.service = new ProductService();
   }
 
   async create(req: Request, res: Response) {
     try {
-      const dto: CreateBrandDto = req.body;
+      const dto: CreateProductDto = req.body;
       const adminId = res.locals.user.id;
       log.info("admin:"+res.locals.user.id);
 
       const result = await this.service.create(dto,adminId);
       const response = new AppSuccess(
-        SUCCESS_CODES.BRAND_CREATED,
-        SUCCESS_MESSAGES.BRAND_CREATED,
+        SUCCESS_CODES.PRODUCT_CREATED,
+        SUCCESS_MESSAGES.PRODUCT_CREATED,
         HTTP_STATUS.CREATED,
         result
       );
@@ -49,8 +51,8 @@ export class BrandController {
     try {
       const result = await this.service.getAll();
       const response = new AppSuccess(
-        SUCCESS_CODES.BRAND_FETCHED,
-        SUCCESS_MESSAGES.BRAND_FETCHED,
+        SUCCESS_CODES.PRODUCT_FETCHED,
+        SUCCESS_MESSAGES.PRODUCT_FETCHED,
         HTTP_STATUS.OK,
         result
       );
@@ -72,8 +74,8 @@ export class BrandController {
 
       const result = await this.service.getOne(id);
       const response = new AppSuccess(
-        SUCCESS_CODES.BRAND_FETCHED,
-        SUCCESS_MESSAGES.BRAND_FETCHED,
+        SUCCESS_CODES.PRODUCT_FETCHED,
+        SUCCESS_MESSAGES.PRODUCT_FETCHED,
         HTTP_STATUS.OK,
         result
       );
@@ -93,13 +95,13 @@ export class BrandController {
   async update(req: Request, res: Response) {
     try {
       const id = Number(req.params.id);
-      const dto: UpdateBrandDto = req.body;
+      const dto: UpdateProductDto = req.body;
       const adminId = res.locals.user.id;
 
       const result = await this.service.update(id, dto,adminId);
       const response = new AppSuccess(
-        SUCCESS_CODES.BRAND_UPDATED,
-        SUCCESS_MESSAGES.BRAND_UPDATED,
+        SUCCESS_CODES.PRODUCT_UPDATED,
+        SUCCESS_MESSAGES.PRODUCT_UPDATED,
         HTTP_STATUS.OK,
         result
       );
@@ -122,8 +124,8 @@ export class BrandController {
 
       await this.service.delete(id);
       const response = new AppSuccess(
-        SUCCESS_CODES.BRAND_DELETED,
-        SUCCESS_MESSAGES.BRAND_DELETED,
+        SUCCESS_CODES.PRODUCT_DELETED,
+        SUCCESS_MESSAGES.PRODUCT_DELETED,
         HTTP_STATUS.OK,
         null
       );

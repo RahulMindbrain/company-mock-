@@ -13,6 +13,7 @@ import { planRoutes } from "./plans/routes/plan.routes.ts";
 import { adminRoutes } from "./admin/routes/admin.routes.ts";
 import { categoryRoutes } from "./category/routes/category.routes.ts";
 import { brandRoutes } from "./brand/routes/brand.routes.ts";
+import { productRoutes } from "./product/routes/product.routes.ts";
 
 
 //middlewares
@@ -57,6 +58,7 @@ app.use('/plan',planRoutes());
 app.use('/admin',adminRoutes());
 app.use('/category',categoryRoutes());
 app.use('/brand',brandRoutes());
+app.use('/product',productRoutes());
 
 
 app.use(errorHandler)

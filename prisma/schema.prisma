@@ -7,7 +7,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-enum CategoryStatus {
+enum RecordStatus {
   INACTIVE @map("0")
   ACTIVE   @map("1")
 }
@@ -102,7 +102,7 @@ model Admin {
   totalwithdraw            Float             @default(0)
   totaltransferwallet      Float             @default(0)
 
-  status                   Boolean           @default(true)
+  status                   RecordStatus      @default(ACTIVE)
 
   createdBy                String?
   updatedBy                String?
@@ -115,6 +115,9 @@ model Admin {
   categoriesUpdated        Category[]        @relation("UpdatedCategories")
   BrandCreatedBy           Brand[]           @relation("BrandCreated")
   BrandUpdatedBy           Brand[]           @relation("BrandUpdated")
+  productsCreated          Product[]         @relation("ProductCreated")
+  productsUpdated          Product[]         @relation("ProductUpdated")
+
 
   @@index([companyId])
   @@index([status])
@@ -138,7 +141,9 @@ model Category {
   categoryname  String?
   description   Json?
 
-  status        CategoryStatus   @default(ACTIVE)
+  status        RecordStatus    @default(ACTIVE)
+
+  products      Product[]
 
   createdBy     Int?
   createdByUser Admin?           @relation("CreatedCategories", fields: [createdBy], references: [id])
@@ -154,7 +159,9 @@ model Category {
 model Brand{
   id               Int              @id @default(autoincrement())
   brandname        String?  
-  status           CategoryStatus   @default(ACTIVE) 
+  status           RecordStatus     @default(ACTIVE) 
+
+  products         Product[]
 
   createdById      Int?
   createdBy        Admin?           @relation("BrandCreated", fields: [createdById], references: [id])
@@ -164,5 +171,47 @@ model Brand{
 
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
+
+}
+
+model Product{
+
+  id               Int              @id @default(autoincrement())
+  productname      String
+  
+  categoryId       Int?
+  category         Category?         @relation(fields:[categoryId],references:[id],onDelete:Restrict)
+  
+  brandId          Int?
+  brand            Brand?            @relation(fields:[brandId],references:[id],onDelete:Restrict)
+
+  sku              String?
+  hsncode          String?
+  dp               Float?
+  mrp              Float?
+  taxPercent       Float?
+  stock            Int?
+  description      String?
+  sre              String?
+
+  BV               Float?
+  mainImg          String?
+  otherImgs        String[]
+
+  status           RecordStatus     @default(ACTIVE)
+
+  createdById      Int?
+  createdBy        Admin?           @relation("ProductCreated", fields: [createdById], references: [id], onDelete: SetNull)
+
+  updatedById      Int?
+  updatedBy        Admin?           @relation("ProductUpdated", fields: [updatedById], references: [id], onDelete: SetNull)
+
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+
+  @@index([brandId])
+  @@index([categoryId])
+  @@index([createdById])
 
 }

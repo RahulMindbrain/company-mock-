@@ -1,45 +1,46 @@
 
 import { AppError } from "../../utils/appError";
 import { ERROR_CODES, ERROR_MESSAGES, HTTP_STATUS } from "../../utils/errors";
-import { CreateBrandDto } from "../dtos/brand.create.dto";
-import { DeleteBrandDto } from "../dtos/brand.delete.dto";
-import { UpdateBrandDto } from "../dtos/brand.update.dto";
-import { BrandRepository } from "../repositories/brand.repository";
+import { CreateProductDto } from "../dtos/product.create.dto";
+import { UpdateProductDto } from "../dtos/product.update.dto";
+import { ProductRepository } from "../repositories/product.repository";
 
-export class BrandService {
-  private readonly repo: BrandRepository;
+export class ProductService {
+  private readonly repo: ProductRepository;
 
   constructor() {
-    this.repo = new BrandRepository();
+    this.repo = new ProductRepository();
   }
 
-  async create(data: CreateBrandDto,adminId:number) {
+  async create(data: CreateProductDto,adminId:number) {
     //if category name is not there throw error 
-    if(!data.brandname){
+    if(!data.productname){
 
       throw new AppError(
-        ERROR_CODES.BRAND_CREATION_FAILED,
-        ERROR_MESSAGES.BRAND_CREATION_FAILED,
+        ERROR_CODES.PRODUCT_NOT_FOUND,
+        ERROR_MESSAGES.PRODUCT_NOT_FOUND,
         HTTP_STATUS.BAD_REQUEST
 
       );
 
     }
-    const name = await this.repo.findByBrandName(data.brandname);
-    if(name){
+    const product = await this.repo.findByProductName(data.productname);
+    if(product){
 
        throw new AppError(
-        ERROR_CODES.BRAND_ALREADY_EXISTS,
-        ERROR_MESSAGES.BRAND_ALREADY_EXISTS,
-        HTTP_STATUS.BAD_REQUEST
+        ERROR_CODES.PRODUCT_ALREADY_EXISTS,
+        ERROR_MESSAGES.PRODUCT_ALREADY_EXISTS,
+        HTTP_STATUS.CONFLICT
       );
 
     }
+
+ 
     const parsedData = {
       ...data,
     };
 
-    return this.repo.createBrand(parsedData,adminId);
+    return this.repo.createProduct(parsedData,adminId);
   }
 
   async getAll() {
@@ -58,13 +59,13 @@ export class BrandService {
     return brand;
   }
 
-  async update(id: number, data: UpdateBrandDto,adminId:number) {
+  async update(id: number, data: UpdateProductDto,adminId:number) {
     const existing = await this.repo.findById(id);
 
     if (!existing) {
       throw new AppError(
-        ERROR_CODES.BRAND_UPDATE_FAILED,
-        ERROR_MESSAGES.BRAND_UPDATE_FAILED,
+        ERROR_CODES.PRODUCT_UPDATE_FAILED,
+        ERROR_MESSAGES.PRODUCT_UPDATE_FAILED,
         HTTP_STATUS.NOT_FOUND
       );
     }
@@ -72,7 +73,7 @@ export class BrandService {
       ...data,
     };
 
-    return this.repo.updateBrand(id, parsedData,adminId);
+    return this.repo.updateProduct(id, parsedData,adminId);
   }
 
   async delete(id: number) {
@@ -86,6 +87,6 @@ export class BrandService {
       );
     }
 
-    return this.repo.deleteBrand(id);
+    return this.repo.deleteProduct(id);
   }
 }
