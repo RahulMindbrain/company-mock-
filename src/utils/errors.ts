@@ -101,6 +101,7 @@ export const ERROR_CODES = {
   PRODUCT_CREATION_FAILED: "PRODUCT_CREATION_FAILED",
   PRODUCT_UPDATE_FAILED: "PRODUCT_UPDATE_FAILED",
   PRODUCT_DELETE_FAILED: "PRODUCT_DELETE_FAILED",
+  PRODUCT_NAME_REQUIRED: "PRODUCT_NAME_REQUIRED",
 
 } as const;
 
@@ -198,6 +199,7 @@ export const ERROR_MESSAGES = {
   PRODUCT_CREATION_FAILED: "Failed to create product.",
   PRODUCT_UPDATE_FAILED: "Failed to update product.",
   PRODUCT_DELETE_FAILED: "Failed to delete product.",
+  PRODUCT_NAME_REQUIRED: "Product name is required",
 
 
 } as const;

@@ -1,9 +1,11 @@
 
+import { RecordStatus } from "@prisma/client";
 import { AppError } from "../../utils/appError";
 import { ERROR_CODES, ERROR_MESSAGES, HTTP_STATUS } from "../../utils/errors";
 import { CreateProductDto } from "../dtos/product.create.dto";
 import { UpdateProductDto } from "../dtos/product.update.dto";
 import { ProductRepository } from "../repositories/product.repository";
+
 
 export class ProductService {
   private readonly repo: ProductRepository;
@@ -12,36 +14,76 @@ export class ProductService {
     this.repo = new ProductRepository();
   }
 
-  async create(data: CreateProductDto,adminId:number) {
-    //if category name is not there throw error 
-    if(!data.productname){
+async create(data: CreateProductDto, adminId: number) {
 
-      throw new AppError(
-        ERROR_CODES.PRODUCT_NOT_FOUND,
-        ERROR_MESSAGES.PRODUCT_NOT_FOUND,
-        HTTP_STATUS.BAD_REQUEST
+if (!data.productname || !data.productname.trim()) {
+throw new AppError(
+ERROR_CODES.PRODUCT_NAME_REQUIRED,
+ERROR_MESSAGES.PRODUCT_NAME_REQUIRED,
+HTTP_STATUS.BAD_REQUEST
+);
+}
 
-      );
 
-    }
-    const product = await this.repo.findByProductName(data.productname);
-    if(product){
+const admin = await this.repo.findByAdminId(adminId);
+if (!admin) {
+throw new AppError(
+ERROR_CODES.ADMIN_NOT_FOUND,
+ERROR_MESSAGES.ADMIN_NOT_FOUND,
+HTTP_STATUS.UNAUTHORIZED
+);
+}
 
-       throw new AppError(
-        ERROR_CODES.PRODUCT_ALREADY_EXISTS,
-        ERROR_MESSAGES.PRODUCT_ALREADY_EXISTS,
-        HTTP_STATUS.CONFLICT
-      );
 
-    }
+const existingProduct = await this.repo.findByProductName(
+data.productname.trim()
+);
 
- 
-    const parsedData = {
-      ...data,
-    };
+if (existingProduct) {
+throw new AppError(
+ERROR_CODES.PRODUCT_ALREADY_EXISTS,
+ERROR_MESSAGES.PRODUCT_ALREADY_EXISTS,
+HTTP_STATUS.CONFLICT
+);
+}
 
-    return this.repo.createProduct(parsedData,adminId);
-  }
+
+if (data.categoryId) {
+const category = await this.repo.findCategoryById(data.categoryId);
+if (!category) {
+throw new AppError(
+ERROR_CODES.CATEGORY_NOT_FOUND,
+"Category not found",
+HTTP_STATUS.BAD_REQUEST
+);
+}
+}
+
+
+if (data.brandId) {
+const brand = await this.repo.findBrandById(data.brandId);
+if (!brand) {
+throw new AppError(
+ERROR_CODES.BRAND_NOT_FOUND,
+"Brand not found",
+HTTP_STATUS.BAD_REQUEST
+);
+}
+}
+
+
+
+
+const parsedData: CreateProductDto = {
+...data,
+productname: data.productname.trim(),
+otherImgs: data.otherImgs ?? [], 
+status: data.status ?? RecordStatus.ACTIVE,
+};
+
+
+return this.repo.createProduct(parsedData, adminId);
+}
 
   async getAll() {
     return this.repo.findAll();
