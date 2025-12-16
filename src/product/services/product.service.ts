@@ -90,15 +90,15 @@ return this.repo.createProduct(parsedData, adminId);
   }
 
   async getOne(id: number) {
-    const brand = await this.repo.findById(id);
-    if (!brand) {
+    const product = await this.repo.findById(id);
+    if (!product) {
       throw new AppError(
-        ERROR_CODES.BRAND_NOT_FOUND,
-        ERROR_MESSAGES.BRAND_NOT_FOUND,
+        ERROR_CODES.PRODUCT_NOT_FOUND,
+        ERROR_MESSAGES.PRODUCT_NOT_FOUND,
         HTTP_STATUS.NOT_FOUND
       );
     }
-    return brand;
+    return product;
   }
 
 async update(
@@ -193,8 +193,8 @@ return this.repo.updateProduct(id, parsedData, adminId);
 
     if (!existing) {
       throw new AppError(
-        ERROR_CODES.BRAND_DELETE_FAILED,
-        ERROR_MESSAGES.BRAND_DELETE_FAILED,
+        ERROR_CODES.PRODUCT_DELETE_FAILED,
+        ERROR_MESSAGES.PRODUCT_DELETE_FAILED,
         HTTP_STATUS.NOT_FOUND
       );
     }
