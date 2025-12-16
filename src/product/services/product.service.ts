@@ -101,22 +101,92 @@ return this.repo.createProduct(parsedData, adminId);
     return brand;
   }
 
-  async update(id: number, data: UpdateProductDto,adminId:number) {
-    const existing = await this.repo.findById(id);
+async update(
+id: number,
+data: UpdateProductDto,
+adminId: number
+) {
 
-    if (!existing) {
-      throw new AppError(
-        ERROR_CODES.PRODUCT_UPDATE_FAILED,
-        ERROR_MESSAGES.PRODUCT_UPDATE_FAILED,
-        HTTP_STATUS.NOT_FOUND
-      );
-    }
-    const parsedData = {
-      ...data,
-    };
+const existing = await this.repo.findById(id);
+if (!existing) {
+throw new AppError(
+ERROR_CODES.PRODUCT_NOT_FOUND,
+ERROR_MESSAGES.PRODUCT_NOT_FOUND,
+HTTP_STATUS.NOT_FOUND
+);
+}
 
-    return this.repo.updateProduct(id, parsedData,adminId);
-  }
+
+const admin = await this.repo.findByAdminId(adminId);
+if (!admin) {
+throw new AppError(
+ERROR_CODES.ADMIN_NOT_FOUND,
+"Admin not found",
+HTTP_STATUS.UNAUTHORIZED
+);
+}
+
+
+if (
+data.productname &&
+data.productname.trim() !== existing.productname
+) {
+const duplicate = await this.repo.findByProductName(
+data.productname.trim()
+);
+
+if (duplicate && duplicate.id !== id) {
+throw new AppError(
+ERROR_CODES.PRODUCT_ALREADY_EXISTS,
+ERROR_MESSAGES.PRODUCT_ALREADY_EXISTS,
+HTTP_STATUS.CONFLICT
+);
+}
+}
+
+
+if (data.categoryId !== undefined) {
+if (data.categoryId === null) {
+// allow unlink
+} else {
+const category = await this.repo.findCategoryById(data.categoryId);
+if (!category) {
+throw new AppError(
+ERROR_CODES.CATEGORY_NOT_FOUND,
+"Category not found",
+HTTP_STATUS.BAD_REQUEST
+);
+}
+}
+}
+
+
+if (data.brandId !== undefined) {
+if (data.brandId === null) {
+// allow unlink
+} else {
+const brand = await this.repo.findBrandById(data.brandId);
+if (!brand) {
+throw new AppError(
+ERROR_CODES.BRAND_NOT_FOUND,
+"Brand not found",
+HTTP_STATUS.BAD_REQUEST
+);
+}
+}
+}
+
+
+
+
+const parsedData = {
+...data,
+productname: data.productname?.trim(),
+otherImgs: data.otherImgs ?? undefined,
+};
+
+return this.repo.updateProduct(id, parsedData, adminId);
+}
 
   async delete(id: number) {
     const existing = await this.repo.findById(id);
