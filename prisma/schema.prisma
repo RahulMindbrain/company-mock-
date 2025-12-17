@@ -12,6 +12,25 @@ enum RecordStatus {
   ACTIVE   @map("1")
 }
 
+enum SizeUnit {
+  ML
+  LTR
+  G
+  KG
+  PCS
+}
+
+model AutoNumber {
+  id             Int     @id @default(autoincrement())
+
+  companyId      Int
+
+  barcodeId      Int 
+  @@unique([companyId])      
+  @@index([companyId])
+}
+
+
 model Company {
   id              Int       @id @default(autoincrement())
   
@@ -45,6 +64,10 @@ model Company {
 
   plans           Plan[]
   admins          Admin[] 
+  brands          Brand[]
+  products        Product[]
+  colors          Color[]
+
 
   createdBy  String?
   updatedBy  String?
@@ -117,6 +140,10 @@ model Admin {
   BrandUpdatedBy           Brand[]           @relation("BrandUpdated")
   productsCreated          Product[]         @relation("ProductCreated")
   productsUpdated          Product[]         @relation("ProductUpdated")
+ // sizesCreated             Size[]            @relation("sizesCreated")
+ // sizesUpdated             Size[]            @relation("sizesUpdated")
+  colorsCreated            Color[]           @relation("colorsCreated")
+  colorsUpdated            Color[]           @relation("colorsUpdated")
 
 
   @@index([companyId])
@@ -163,6 +190,9 @@ model Brand{
 
   products         Product[]
 
+  companyId        Int
+  company          Company @relation(fields: [companyId], references: [id])
+
   createdById      Int?
   createdBy        Admin?           @relation("BrandCreated", fields: [createdById], references: [id])
 
@@ -174,16 +204,47 @@ model Brand{
 
 }
 
+model Color{
+
+id               Int              @id  @default(autoincrement())
+companyId        Int? 
+company          Company?         @relation(fields: [companyId], references: [id])
+status           RecordStatus     @default(ACTIVE)
+createdBy        Int?
+createdByUser    Admin?           @relation("colorsCreated", fields: [createdBy], references: [id])
+
+updatedBy        Int?
+updatedByUser    Admin?           @relation("colorsUpdated", fields: [updatedBy], references: [id])
+
+ 
+createdAt        DateTime         @default(now())
+updatedAt        DateTime         @updatedAt
+}
+
+
+
 model Product{
 
   id               Int               @id @default(autoincrement())
   productname      String
+
+  companyId        Int
+  company          Company           @relation(fields: [companyId], references: [id])
+
   
   categoryId       Int?
   category         Category?         @relation(fields:[categoryId],references:[id],onDelete:Restrict)
   
   brandId          Int?
   brand            Brand?            @relation(fields:[brandId],references:[id],onDelete:Restrict)
+
+ // sizes            Size[] 
+
+  barcodeId        Int               @unique                          
+  barcode          String?
+
+  sizeValue        Float?             
+  sizeUnit         SizeUnit?            
 
   sku              String?
   hsncode          String?
@@ -192,7 +253,7 @@ model Product{
   taxPercent       Float?
   stock            Int?
   description      String?
-  sre              String?
+  spe              String?
 
   BV               Float?
   mainImg          String?
@@ -213,5 +274,27 @@ model Product{
   @@index([brandId])
   @@index([categoryId])
   @@index([createdById])
+  @@index([companyId])
+  @@unique([companyId, productname, brandId, sizeValue, sizeUnit])
 
 }
+
+
+// model Size {
+//   id               Int             @id @default(autoincrement())
+//   value            Float    
+//   unit             SizeUnit 
+// 
+//   productId        Int
+//   product          Product          @relation(fields: [productId], references: [id])
+// 
+//   
+//   createdById      Int?
+//   createdBy        Admin?           @relation("sizesCreated", fields: [createdById], references: [id], onDelete: SetNull)
+// 
+//   updatedById      Int?
+//   updatedBy        Admin?           @relation("sizesUpdated", fields: [updatedById], references: [id], onDelete: SetNull)
+// 
+//   createdAt        DateTime         @default(now())
+//   updatedAt        DateTime         @updatedAt
+// }
