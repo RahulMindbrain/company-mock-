@@ -14,6 +14,7 @@ import { adminRoutes } from "./admin/routes/admin.routes.ts";
 import { categoryRoutes } from "./category/routes/category.routes.ts";
 import { brandRoutes } from "./brand/routes/brand.routes.ts";
 import { productRoutes } from "./product/routes/product.routes.ts";
+import { autonumRoutes } from "./autonum/routes/autonum.routes.ts";
 
 
 //middlewares
@@ -59,6 +60,7 @@ app.use('/admin',adminRoutes());
 app.use('/category',categoryRoutes());
 app.use('/brand',brandRoutes());
 app.use('/product',productRoutes());
+app.use('/autonum',autonumRoutes());
 
 
 app.use(errorHandler)

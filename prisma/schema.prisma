@@ -191,7 +191,7 @@ model Brand{
   products         Product[]
 
   companyId        Int
-  company          Company @relation(fields: [companyId], references: [id])
+  company          Company          @relation(fields: [companyId], references: [id])
 
   createdById      Int?
   createdBy        Admin?           @relation("BrandCreated", fields: [createdById], references: [id])
@@ -240,7 +240,7 @@ model Product{
 
  // sizes            Size[] 
 
-  barcodeId        Int               @unique                          
+  barcodeId        Int                                      
   barcode          String?
 
   sizeValue        Float?             
@@ -279,6 +279,19 @@ model Product{
 
 }
 
+model ProductBarcode {
+  id               Int    @id @default(autoincrement())
+  companyId        Int
+  brandId          Int
+  productname      String
+  size             String
+  barcodeId        Int
+
+  @@unique([companyId, brandId,productname, size])
+  @@index([companyId, brandId])
+}
+
+
 
 // model Size {
 //   id               Int             @id @default(autoincrement())
@@ -298,3 +311,4 @@ model Product{
 //   createdAt        DateTime         @default(now())
 //   updatedAt        DateTime         @updatedAt
 // }
+

@@ -1,4 +1,6 @@
 
+import { AdminRepository } from "../../admin/repositories/admin.repository";
+import { CompanyRepository } from "../../company/repositories/company.repository";
 import { AppError } from "../../utils/appError";
 import { ERROR_CODES, ERROR_MESSAGES, HTTP_STATUS } from "../../utils/errors";
 import { CreateBrandDto } from "../dtos/brand.create.dto";
@@ -6,11 +8,15 @@ import { DeleteBrandDto } from "../dtos/brand.delete.dto";
 import { UpdateBrandDto } from "../dtos/brand.update.dto";
 import { BrandRepository } from "../repositories/brand.repository";
 
+
 export class BrandService {
   private readonly repo: BrandRepository;
+  private readonly comprepo:CompanyRepository ;
+  
 
   constructor() {
     this.repo = new BrandRepository();
+    this.comprepo = new CompanyRepository();
   }
 
   async create(data: CreateBrandDto,adminId:number) {
@@ -35,11 +41,25 @@ export class BrandService {
       );
 
     }
-    const parsedData = {
-      ...data,
-    };
 
-    return this.repo.createBrand(parsedData,adminId);
+    const company = await this.comprepo.findById(data.companyId);
+    if(!company){
+
+       throw new AppError(
+        ERROR_CODES.COMPANY_NOT_FOUND,
+        ERROR_MESSAGES.COMPANY_NOT_FOUND,
+        HTTP_STATUS.BAD_REQUEST
+      );
+
+    }
+return this.repo.createBrand(
+  {
+    brandname: data.brandname.trim(),
+    companyId: data.companyId,
+    status: data.status
+  },
+  adminId
+);
   }
 
   async getAll() {

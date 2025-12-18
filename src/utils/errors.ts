@@ -10,8 +10,6 @@ export const HTTP_STATUS = {
   INTERNAL_ERROR: 500,
 } as const;
 
-
-
 export const ERROR_CODES = {
   // General
   INTERNAL_ERROR: "INTERNAL_ERROR",
@@ -59,17 +57,16 @@ export const ERROR_CODES = {
   PLAN_UPDATE_FAILED: "PLAN_UPDATE_FAILED",
   PLAN_DELETE_FAILED: "PLAN_DELETE_FAILED",
   PLAN_ALREADY_EXISTS: "PLAN_ALREADY_EXISTS",
-  
-  //Admin
-  ADMIN_NOT_FOUND: 'ADMIN_NOT_FOUND',
-  EMAIL_ALREADY_EXISTS: 'EMAIL_ALREADY_EXISTS',
-  INVALID_ADMIN_ID: 'INVALID_ADMIN_ID',
-  INVALID_PAYLOAD: 'INVALID_PAYLOAD',
-  ADMINTYPE_INVALID: 'ADMINTYPE_INVALID',
 
+  //Admin
+  ADMIN_NOT_FOUND: "ADMIN_NOT_FOUND",
+  EMAIL_ALREADY_EXISTS: "EMAIL_ALREADY_EXISTS",
+  INVALID_ADMIN_ID: "INVALID_ADMIN_ID",
+  INVALID_PAYLOAD: "INVALID_PAYLOAD",
+  ADMINTYPE_INVALID: "ADMINTYPE_INVALID",
 
   //Data
-  DATA_INSUFFICIENT: 'DATA_INSUFFICIENT',
+  DATA_INSUFFICIENT: "DATA_INSUFFICIENT",
 
   //Password
   PASSWORD_REQUIRED: "PASSWORD_REQUIRED",
@@ -103,9 +100,19 @@ export const ERROR_CODES = {
   PRODUCT_DELETE_FAILED: "PRODUCT_DELETE_FAILED",
   PRODUCT_NAME_REQUIRED: "PRODUCT_NAME_REQUIRED",
 
+  //Autonum codes
+  AUTONUM_ALREADY_EXISTS: "AUTONUM_ALREADY_EXISTS",
+  AUTONUM_NOT_FOUND: "AUTONUM_NOT_FOUND",
+  AUTONUM_CREATE_FAILED: "AUTONUM_CREATE_FAILED",
+  AUTONUM_UPDATE_FAILED: "AUTONUM_UPDATE_FAILED",
+  AUTONUM_INCREMENT_FAILED: "AUTONUM_INCREMENT_FAILED",
+
+  //Size unit and value
+  SIZE_REQUIRED: "SIZE_REQUIRED",
+  SIZE_INVALID: "SIZE_INVALID",
+  SIZE_COMBINATION_NOT_FOUND: "SIZE_COMBINATION_NOT_FOUND",
+  SIZE_COMBINATION_DUPLICATE: "SIZE_COMBINATION_DUPLICATE",
 } as const;
-
-
 
 export const ERROR_MESSAGES = {
   // General
@@ -157,14 +164,14 @@ export const ERROR_MESSAGES = {
   PLAN_ALREADY_EXISTS: "A plan with the same name already exists.",
 
   //Admin
-  ADMIN_NOT_FOUND: 'The admin you are trying to access does not exist.',
-  EMAIL_ALREADY_EXISTS: 'An admin with this email already exists.',
-  INVALID_ADMIN_ID: 'The provided admin ID is invalid.',
-  INVALID_PAYLOAD: 'The data provided is incomplete or invalid.',
-  ADMINTYPE_INVALID: 'The provided admin type is not valid.',
+  ADMIN_NOT_FOUND: "The admin you are trying to access does not exist.",
+  EMAIL_ALREADY_EXISTS: "An admin with this email already exists.",
+  INVALID_ADMIN_ID: "The provided admin ID is invalid.",
+  INVALID_PAYLOAD: "The data provided is incomplete or invalid.",
+  ADMINTYPE_INVALID: "The provided admin type is not valid.",
 
   //Data
-  DATA_INSUFFICIENT: 'Required fields are missing or incomplete.',
+  DATA_INSUFFICIENT: "Required fields are missing or incomplete.",
 
   //Password
   PASSWORD_REQUIRED: "Password is required.",
@@ -172,19 +179,20 @@ export const ERROR_MESSAGES = {
     "Password must include uppercase, lowercase, number, and special character.",
   PASSWORD_MISMATCH: "Passwords do not match.",
   PASSWORD_INCORRECT: "The current password you entered is incorrect.",
-  PASSWORD_SAME_AS_OLD: "The new password cannot be the same as the old password.",
+  PASSWORD_SAME_AS_OLD:
+    "The new password cannot be the same as the old password.",
   PASSWORD_RESET_EXPIRED: "This password reset link has expired.",
   PASSWORD_RESET_INVALID: "Invalid or malformed password reset token.",
 
   //Category
   CATEGORY_NOT_FOUND: "The specified category was not found.",
   CATEGORY_ALREADY_EXISTS: "A category with this name already exists.",
-  CATEGORY_VALIDATION_ERROR: "Category validation failed. Please check the input data.",
+  CATEGORY_VALIDATION_ERROR:
+    "Category validation failed. Please check the input data.",
   CATEGORY_CREATION_FAILED: "Failed to create category due to a server error.",
   CATEGORY_UPDATE_FAILED: "Failed to update category due to a server error.",
   CATEGORY_DELETE_FAILED: "Failed to delete category due to a server error.",
 
- 
   //Brand
   BRAND_NOT_FOUND: "Brand not found.",
   BRAND_ALREADY_EXISTS: "Brand already exists.",
@@ -201,7 +209,25 @@ export const ERROR_MESSAGES = {
   PRODUCT_DELETE_FAILED: "Failed to delete product.",
   PRODUCT_NAME_REQUIRED: "Product name is required",
 
+  //Autonum
+  AUTONUM_ALREADY_EXISTS:
+    "Auto number configuration already exists for this company.",
 
+  AUTONUM_NOT_FOUND: "Auto number configuration not found for this company.",
+
+  AUTONUM_CREATE_FAILED: "Failed to create auto number configuration.",
+
+  AUTONUM_UPDATE_FAILED: "Failed to update auto number configuration.",
+
+  AUTONUM_INCREMENT_FAILED: "Failed to increment barcode number.",
+
+  //Size unit and value
+  SIZE_REQUIRED: "Size value and size unit are required for barcode generation",
+  SIZE_INVALID: "Invalid size value and unit. Example: 100 ML, 1 LTR, 500 GM",
+  SIZE_COMBINATION_NOT_FOUND:
+    "No barcode found for the given size value and unit",
+  SIZE_COMBINATION_DUPLICATE:
+    "Duplicate size value and unit combination detected",
 } as const;
 
 export const SUCCESS_CODES = {
@@ -217,7 +243,7 @@ export const SUCCESS_CODES = {
   COMPANY_UPDATED: "COMPANY_UPDATED",
   COMPANY_DELETED: "COMPANY_DELETED",
 
-  // User, Country, State, City 
+  // User, Country, State, City
   USER_CREATED: "USER_CREATED",
   COUNTRY_CREATED: "COUNTRY_CREATED",
   STATE_CREATED: "STATE_CREATED",
@@ -231,12 +257,12 @@ export const SUCCESS_CODES = {
   PLANS_FETCHED: "PLANS_FETCHED",
 
   //Admin
-  ADMIN_CREATED: 'ADMIN_CREATED',
-  ADMIN_FETCHED: 'ADMIN_FETCHED',
-  ADMINS_FETCHED: 'ADMINS_FETCHED',
-  ADMIN_UPDATED: 'ADMIN_UPDATED',
-  ADMIN_DELETED: 'ADMIN_DELETED',
-  ADMIN_STATUS_UPDATED: 'ADMIN_STATUS_UPDATED',
+  ADMIN_CREATED: "ADMIN_CREATED",
+  ADMIN_FETCHED: "ADMIN_FETCHED",
+  ADMINS_FETCHED: "ADMINS_FETCHED",
+  ADMIN_UPDATED: "ADMIN_UPDATED",
+  ADMIN_DELETED: "ADMIN_DELETED",
+  ADMIN_STATUS_UPDATED: "ADMIN_STATUS_UPDATED",
 
   //Password
   PASSWORD_UPDATED: "PASSWORD_UPDATED",
@@ -262,8 +288,12 @@ export const SUCCESS_CODES = {
   PRODUCT_UPDATED: "PRODUCT_UPDATED",
   PRODUCT_DELETED: "PRODUCT_DELETED",
 
+  //Autonum
+  AUTONUM_CREATED: "AUTONUM_CREATED",
+  AUTONUM_FETCHED: "AUTONUM_FETCHED",
+  AUTONUM_UPDATED: "AUTONUM_UPDATED",
+  AUTONUM_INCREMENTED: "AUTONUM_INCREMENTED",
 } as const;
-
 
 export const SUCCESS_MESSAGES = {
   //General
@@ -286,12 +316,12 @@ export const SUCCESS_MESSAGES = {
   PLANS_FETCHED: "Plans retrieved successfully.",
 
   //Admin
-  ADMIN_CREATED: 'Admin has been successfully created.',
-  ADMIN_FETCHED: 'Admin details retrieved successfully.',
-  ADMINS_FETCHED: 'Admin list retrieved successfully.',
-  ADMIN_UPDATED: 'Admin details updated successfully.',
-  ADMIN_DELETED: 'Admin has been deleted successfully.',
-  ADMIN_STATUS_UPDATED: 'Admin status updated successfully.',
+  ADMIN_CREATED: "Admin has been successfully created.",
+  ADMIN_FETCHED: "Admin details retrieved successfully.",
+  ADMINS_FETCHED: "Admin list retrieved successfully.",
+  ADMIN_UPDATED: "Admin details updated successfully.",
+  ADMIN_DELETED: "Admin has been deleted successfully.",
+  ADMIN_STATUS_UPDATED: "Admin status updated successfully.",
 
   //Password
   PASSWORD_UPDATED: "Password updated successfully.",
@@ -317,4 +347,12 @@ export const SUCCESS_MESSAGES = {
   PRODUCT_UPDATED: "Product updated successfully.",
   PRODUCT_DELETED: "Product deleted successfully.",
 
+  //Autonum
+  AUTONUM_CREATED: "Auto number configuration created successfully.",
+
+  AUTONUM_FETCHED: "Auto number configuration fetched successfully.",
+
+  AUTONUM_UPDATED: "Auto number configuration updated successfully.",
+
+  AUTONUM_INCREMENTED: "Barcode number incremented successfully.",
 } as const;

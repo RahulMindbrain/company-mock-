@@ -5,13 +5,17 @@ import {
   IsNumber,
   IsArray,
   IsEnum,
-} from 'class-validator';
-import { Type } from 'class-transformer';
-import { RecordStatus } from '@prisma/client';
+} from "class-validator";
+import { Type } from "class-transformer";
+import { RecordStatus, SizeUnit } from "@prisma/client";
 
 export class CreateProductDto {
   @IsString()
   productname!: string;
+
+  @Type(() => Number)
+  @IsInt()
+  companyId?: number;
 
   @IsOptional()
   @Type(() => Number)
@@ -22,6 +26,15 @@ export class CreateProductDto {
   @Type(() => Number)
   @IsInt()
   brandId?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  sizeValue?: number;
+
+  @IsOptional()
+  @IsEnum(SizeUnit)
+  sizeUnit!: SizeUnit;
 
   @IsOptional()
   @IsString()
@@ -57,7 +70,7 @@ export class CreateProductDto {
 
   @IsOptional()
   @IsString()
-  sre?: string;
+  spe?: string;
 
   @IsOptional()
   @Type(() => Number)

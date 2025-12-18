@@ -808,6 +808,19 @@
 			]
 		},
 		{
+			"name": "Autonum",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "healthcheck",
 			"request": {
 				"method": "GET",

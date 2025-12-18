@@ -2,18 +2,34 @@ import { prisma } from "../../../db/prisma";
 import { Prisma } from "@prisma/client";
 
 export class BrandRepository {
-async createBrand(data: Prisma.BrandCreateInput,adminId:number) {
+async createBrand(
+  data: {
+    brandname: string;
+    companyId: number;
+    status?: "ACTIVE" | "INACTIVE";
+  },
+  adminId: number
+) {
   return prisma.brand.create({
     data: {
       brandname: data.brandname,
-      status: data.status,
+      status: data.status ?? "ACTIVE",
 
-      createdById: adminId, 
-      updatedById: adminId
+      // REQUIRED relation
+      company: {
+        connect: { id: data.companyId }
+      },
+
+      // audit relations
+      createdBy: {
+        connect: { id: adminId }
+      },
+      updatedBy: {
+        connect: { id: adminId }
+      }
     }
   });
 }
-
 
   async findAll() {
     return prisma.brand.findMany();
