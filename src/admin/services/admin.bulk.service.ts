@@ -9,6 +9,31 @@ import {
 import { RecordStatus } from "@prisma/client";
 import { AutonumRepository } from "../../autonum/repositories/autonum.repository";
 
+const TEMPLATE_VERSION = "1.0";
+
+const REQUIRED_COLUMNS = [
+  "ProductName",
+  "BrandId",
+  "SizeValue",
+  "SizeUnit",
+];
+
+const OPTIONAL_COLUMNS = [
+  "SKU",
+  "CategoryId",
+  "Barcode",
+  "HSNCode",
+  "DP",
+  "MRP",
+  "TaxPercent",
+  "Stock",
+  "Description",
+  "SPE",
+  "BV",
+  "MainImg",
+  "OtherImgs",
+];
+
 export class ProductImportService {
   private readonly repo: ProductRepository;
   private readonly autonumrepo: AutonumRepository;
@@ -32,7 +57,17 @@ export class ProductImportService {
     }
 
     const workbook = XLSX.read(buffer, { type: "buffer" });
-    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+
+    const sheetName = workbook.SheetNames[0];
+    if (!sheetName) {
+      throw new AppError(
+        ERROR_CODES.DATA_INSUFFICIENT,
+        ERROR_MESSAGES.DATA_INSUFFICIENT,
+        HTTP_STATUS.BAD_REQUEST
+      );
+    }
+
+    const sheet = workbook.Sheets[sheetName];
     const rows = XLSX.utils.sheet_to_json<any>(sheet, { defval: null });
 
     if (!rows.length) {
@@ -40,6 +75,37 @@ export class ProductImportService {
         ERROR_CODES.DATA_INSUFFICIENT,
         ERROR_MESSAGES.DATA_INSUFFICIENT,
         HTTP_STATUS.BAD_REQUEST
+      );
+    }
+ const headerColumns = Object.keys(rows[0] ?? {});
+ const missingRequiredColumns = REQUIRED_COLUMNS.filter(
+      (col) => !headerColumns.includes(col)
+    );
+
+    if (missingRequiredColumns.length) {
+      throw new AppError(
+        ERROR_CODES.VALIDATION_ERROR,
+        ERROR_MESSAGES.VALIDATION_ERROR,
+        HTTP_STATUS.UNPROCESSABLE_ENTITY
+      );
+    }
+
+  
+
+    const allowedColumns = new Set([
+      ...REQUIRED_COLUMNS,
+      ...OPTIONAL_COLUMNS,
+    ]);
+
+    const unknownColumns = headerColumns.filter(
+      (col) => !allowedColumns.has(col)
+    );
+
+    if (unknownColumns.length) {
+      throw new AppError(
+        ERROR_CODES.VALIDATION_ERROR,
+        ERROR_MESSAGES.VALIDATION_ERROR,
+        HTTP_STATUS.UNPROCESSABLE_ENTITY
       );
     }
 
@@ -51,8 +117,13 @@ export class ProductImportService {
       const rowNo = index + 2;
 
       try {
-        if (!row.ProductName || !row.BrandId || !row.SizeValue || !row.SizeUnit) {
-          throw new Error(ERROR_MESSAGES.VALIDATION_ERROR);
+        if (
+          !row.ProductName ||
+          !row.BrandId ||
+          !row.SizeValue ||
+          !row.SizeUnit
+        ) {
+          throw new Error();
         }
 
         const normalizedProductName = String(row.ProductName)
@@ -60,15 +131,13 @@ export class ProductImportService {
           .toLowerCase();
 
         const sizeValue = Number(row.SizeValue);
-        const sizeUnit = row.SizeUnit;
-        const sizeKey = `${sizeValue}_${sizeUnit}`;
-
         if (!Number.isFinite(sizeValue)) {
-          throw new Error(ERROR_MESSAGES.VALIDATION_ERROR);
+          throw new Error();
         }
 
-       
-        const existingBarcode =
+        const sizeUnit = row.SizeUnit;
+        const sizeKey = `${sizeValue}_${sizeUnit}`;
+ const existingBarcode =
           await this.repo.findExistingProductBarcode({
             companyId,
             brandId: Number(row.BrandId),
@@ -91,15 +160,16 @@ export class ProductImportService {
             barcodeId
           );
         }
-
-        await this.repo.createProduct(
+  await this.repo.createProduct(
           {
             productname: normalizedProductName,
             sku: row.SKU ?? undefined,
 
             companyId,
             brandId: Number(row.BrandId),
-            categoryId: row.CategoryId ? Number(row.CategoryId) : undefined,
+            categoryId: row.CategoryId
+              ? Number(row.CategoryId)
+              : undefined,
 
             barcodeId,
             barcode: row.Barcode ?? undefined,
@@ -128,7 +198,7 @@ export class ProductImportService {
         );
 
         inserted++;
-      } catch (e) {
+      } catch {
         errors.push({
           row: rowNo,
           error: ERROR_MESSAGES.VALIDATION_ERROR,
