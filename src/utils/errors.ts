@@ -112,6 +112,12 @@ export const ERROR_CODES = {
   SIZE_INVALID: "SIZE_INVALID",
   SIZE_COMBINATION_NOT_FOUND: "SIZE_COMBINATION_NOT_FOUND",
   SIZE_COMBINATION_DUPLICATE: "SIZE_COMBINATION_DUPLICATE",
+
+  //Bulk Product Import
+  PRODUCT_IMPORT_FAILED: "PRODUCT_IMPORT_FAILED",
+  PRODUCT_IMPORT_FILE_MISSING: "PRODUCT_IMPORT_FILE_MISSING",
+  PRODUCT_IMPORT_VALIDATION_ERROR: "PRODUCT_IMPORT_VALIDATION_ERROR",
+  PRODUCT_IMPORT_NO_VALID_ROWS: "PRODUCT_IMPORT_NO_VALID_ROWS",
 } as const;
 
 export const ERROR_MESSAGES = {
@@ -228,6 +234,12 @@ export const ERROR_MESSAGES = {
     "No barcode found for the given size value and unit",
   SIZE_COMBINATION_DUPLICATE:
     "Duplicate size value and unit combination detected",
+
+  //Bulk Prouduct Import
+  PRODUCT_IMPORT_FAILED: "Product import failed",
+  PRODUCT_IMPORT_FILE_MISSING: "Import file is required",
+  PRODUCT_IMPORT_VALIDATION_ERROR: "One or more rows contain invalid data",
+  PRODUCT_IMPORT_NO_VALID_ROWS: "No valid products found to import",
 } as const;
 
 export const SUCCESS_CODES = {
@@ -293,6 +305,10 @@ export const SUCCESS_CODES = {
   AUTONUM_FETCHED: "AUTONUM_FETCHED",
   AUTONUM_UPDATED: "AUTONUM_UPDATED",
   AUTONUM_INCREMENTED: "AUTONUM_INCREMENTED",
+
+  //Product Bulk Import
+   PRODUCTS_IMPORTED: "PRODUCTS_IMPORTED",
+
 } as const;
 
 export const SUCCESS_MESSAGES = {
@@ -355,4 +371,8 @@ export const SUCCESS_MESSAGES = {
   AUTONUM_UPDATED: "Auto number configuration updated successfully.",
 
   AUTONUM_INCREMENTED: "Barcode number incremented successfully.",
+
+  //Product Bulk import 
+  PRODUCTS_IMPORTED: "Products imported successfully",
+
 } as const;

@@ -24,6 +24,7 @@
     "@types/express": "^5.0.5",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/lodash": "^4.17.21",
+    "@types/multer": "^2.0.0",
     "@types/node": "^24.10.1",
     "@types/pg": "^8.15.6",
     "cross-env": "^10.1.0",
@@ -41,15 +42,17 @@
     "dayjs": "^1.11.19",
     "dotenv": "^17.2.3",
     "dotenv-flow": "^4.1.0",
-    "express": "^5.1.0",
+    "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "lodash": "^4.17.21",
+    "multer": "^2.0.2",
     "pg": "^8.16.3",
     "pino": "^10.1.0",
     "pino-pretty": "^13.1.2",
     "prisma": "^6.3.1",
     "reflect-metadata": "^0.2.2",
     "response-time": "^2.3.4",
+    "xlsx": "^0.18.5",
     "zod": "^4.1.13"
   }
 }

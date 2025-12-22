@@ -54,6 +54,44 @@ async createProduct(
   });
 }
 
+async createManyProducts(
+  data: CreateProductRepoInput[],
+  adminId: number,
+) {
+  return prisma.product.createMany({
+    data: data.map((item) => ({
+      productname: item.productname,
+
+      companyId: item.companyId,
+      categoryId: item.categoryId ?? null,
+      brandId: item.brandId ?? null,
+
+      barcodeId: item.barcodeId,
+      barcode: item.barcode,
+
+      sizeValue: item.sizeValue,
+      sizeUnit: item.sizeUnit,
+
+      sku: item.sku,
+      hsncode: item.hsncode,
+      dp: item.dp,
+      mrp: item.mrp,
+      taxPercent: item.taxPercent,
+      stock: item.stock,
+      description: item.description,
+      spe: item.spe,
+      BV: item.BV,
+      mainImg: item.mainImg,
+      otherImgs: item.otherImgs,
+      status: item.status,
+
+      createdById: adminId,
+      updatedById: adminId,
+    })),
+    skipDuplicates: true, 
+  });
+}
+
 
 async findAll() {
   return prisma.product.findMany();

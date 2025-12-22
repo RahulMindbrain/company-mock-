@@ -185,14 +185,13 @@ model Category {
 
 model Brand{
   id               Int              @id @default(autoincrement())
-  brandname        String?  
-  status           RecordStatus     @default(ACTIVE) 
-
-  products         Product[]
-
   companyId        Int
   company          Company          @relation(fields: [companyId], references: [id])
+  products         Product[]
 
+  brandname        String?  
+  
+  status           RecordStatus     @default(ACTIVE)
   createdById      Int?
   createdBy        Admin?           @relation("BrandCreated", fields: [createdById], references: [id])
 

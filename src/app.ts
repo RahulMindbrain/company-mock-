@@ -15,6 +15,7 @@ import { categoryRoutes } from "./category/routes/category.routes.ts";
 import { brandRoutes } from "./brand/routes/brand.routes.ts";
 import { productRoutes } from "./product/routes/product.routes.ts";
 import { autonumRoutes } from "./autonum/routes/autonum.routes.ts";
+import { productImportRoutes } from "./admin/routes/admin.bulk.routes.ts";
 
 
 //middlewares
@@ -61,7 +62,7 @@ app.use('/category',categoryRoutes());
 app.use('/brand',brandRoutes());
 app.use('/product',productRoutes());
 app.use('/autonum',autonumRoutes());
-
+app.use('/bulk',productImportRoutes());
 
 app.use(errorHandler)
 export default app;
