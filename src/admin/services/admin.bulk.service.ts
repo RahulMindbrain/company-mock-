@@ -9,7 +9,6 @@ import {
 import { RecordStatus } from "@prisma/client";
 import { AutonumRepository } from "../../autonum/repositories/autonum.repository";
 
-const TEMPLATE_VERSION = "1.0";
 
 const REQUIRED_COLUMNS = [
   "ProductName",

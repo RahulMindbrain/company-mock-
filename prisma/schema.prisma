@@ -21,11 +21,15 @@ enum SizeUnit {
 }
 
 model AutoNumber {
-  id             Int     @id @default(autoincrement())
+  id                      Int     @id @default(autoincrement())
+  companyId               Int
 
-  companyId      Int
+  barcodeId               Int
+  TDS                     Int
+  AdminCharge             Int
+  PurchaseInvoice         Int
+  PurchaseInvoiceCode     String
 
-  barcodeId      Int 
   @@unique([companyId])      
   @@index([companyId])
 }
